@@ -1,17 +1,17 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import { ListItem, ListItemText } from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
+import Avatar from './Avatar';
 
 const styles = theme => ({
-  
+
 });
 
-const ChatListItem = ({ chat, key }) => {
+const ChatListItem = ({ classes, title }) => {
   return (
-    <ListItem button component="a" key={ key }>
-      <Avatar>{ chat.title[0] }</Avatar>
-      <ListItemText primary={ chat.title } />
+    <ListItem button>
+      <Avatar colorFrom={title}>{title}</Avatar>
+      <ListItemText primary={ title } />
     </ListItem>
   );
 }

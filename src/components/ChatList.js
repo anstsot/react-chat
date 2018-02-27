@@ -14,7 +14,7 @@ const ChatList = ({ classes, chats }) => {
   return (
     <List className={ classes.ChatsList }>
       { chats && chats.map((chat, key) => 
-        <ChatListItem key={ key } chat={ chat } />
+        <ChatListItem key={ key } { ...chat } />
       )}
     </List>
   );

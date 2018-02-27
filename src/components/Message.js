@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
-import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import Avatar from './Avatar';
 
 const styles = theme => ({
   MessageDiv: {
@@ -31,7 +31,7 @@ const Message = ({ classes, sender, content }) => {
   const isMessageFromMe = sender === 'me';
 
   const UserAvatar =  (
-    <Avatar>{ sender[0] }</Avatar>
+    <Avatar colorFrom={sender}>{ sender }</Avatar>
   );
 
   return (
