@@ -1,10 +1,10 @@
 import React from 'react';
 import 'typeface-roboto';
-import Sidebar from './components/Sidebar';
-import ChatHeader from './components/ChatHeader';
-import Chat from './components/Chat';
+import Sidebar from './Sidebar';
+import ChatHeader from './ChatHeader';
+import Chat from './Chat';
 import { withStyles } from 'material-ui/styles';
-import { chats, messages } from './mock-data';
+import { chats, messages } from '../mock-data';
 
 const styles = theme => ({
   root: {
