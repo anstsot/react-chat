@@ -1,13 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
+import 'typeface-roboto';
+import Sidebar from './components/Sidebar';
+import ChatHeader from './components/ChatHeader';
+import Chat from './components/Chat';
+import { withStyles } from 'material-ui/styles';
+import { chats, messages } from './mock-data';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>Chat</h1>
-      </div>
-    );
-  }
-}
+const styles = theme => ({
+  root: {
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    backgroundColor: theme.palette.background.default,
+  },
+});
 
-export default App;
+const App = ({classes}) => {
+  return (
+    <div className={classes.root}>
+      <ChatHeader />
+      <Sidebar chats={chats} />
+      <Chat messages={messages} />
+    </div>
+  );
+};
+
+export default withStyles(styles)(App);
