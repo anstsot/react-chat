@@ -6,7 +6,7 @@ import WelcomePage from './WelcomePage';
 const App = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={WelcomePage} />
+      <Route exact path="/(welcome)?" component={WelcomePage} />
       <Route path="/chat" component={ChatPage} />
       <Redirect to="/" />
     </Switch>

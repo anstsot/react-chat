@@ -14,47 +14,77 @@ const styles = theme => ({
 
 class LoginForm extends React.Component {
   state = {
-    username: '',
-    password: '',
+    username: {
+      value: '',
+      isValid: true,
+    },
+    password: {
+      value: '',
+      isValid: true,
+    },
   };
 
-
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
+  handleInputChange = event => {
+    event.persist();
+    const { name, value } = event.target;
+    this.setState((prevState) =>({
+      [name]: {
+        ...prevState[name],
+        value: [value],
+      }
+    }));
   };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { username, password } = this.state;
+
+    console.log('Login: ', username.value, password.value);
+  }
 
   render () {
     const { classes } = this.props;
+    const { username, password } = this.state;
 
     return (
-      <form className={classes.container} noValidate>
+      <form className={classes.container} onSubmit={this.handleSubmit}>
         <TextField
-          id="username"
           label="Username"
           placeholder="Type your username..."
           type="text"
           className={classes.textField}
-          value={this.state.username}
-          onChange={this.handleChange('username')}
+          value={username.value}
+          name="username"
+          onChange={this.handleInputChange}
+          autoComplete = "username"
           margin="normal"
+          error={!username.isValid}
           fullWidth
           required
         />
         <TextField
-          id="password"
           label="Password"
           placeholder="Type your password..."
           type="password"
           className={classes.textField}
-          value={this.state.password}
-          onChange={this.handleChange('password')}
+          value={password.value}
+          name="password"
+          onChange={this.handleInputChange}
+          autoComplete = "password"
           margin="normal"
+          error={!password.isValid}
           fullWidth
           required
         />
-        <Button fullWidth variant="raised" type="submit" color="primary" className={classes.button}>Login</Button>
+        <Button 
+          fullWidth 
+          variant="raised" 
+          type="submit" 
+          color="primary" 
+          className={classes.button}
+        >
+          Login
+        </Button>
       </form>
     );
   };
