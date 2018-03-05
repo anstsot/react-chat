@@ -28,6 +28,18 @@ class SignUpForm extends React.Component {
     },
   };
 
+  validate = () => {
+    const { password, repeatedPassword } = this.state;
+    const isValid = password.value === repeatedPassword.value;
+
+    this.setState({
+      password: { ...password, isValid },
+      repeatedPassword: { ...repeatedPassword, isValid },
+    });
+
+    return isValid;
+  }
+
   handleInputChange = event => {
     event.persist();
     const { name, value } = event.target;
@@ -41,21 +53,14 @@ class SignUpForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
+    //if (!this.validate()) return;
+
     const { username, password } = this.state;
 
     console.log('Sign Up: ', username.value, password.value);
-  }
 
-  validate = () => {
-    const { password, repeatedPassword } = this.state;
-    const isValid = password.value === repeatedPassword.value;
-
-    this.setState({
-      password: { ...password, isValid },
-      repeatedPassword: { ...repeatedPassword, isValid },
-    });
-
-    return isValid;
+    this.props.onSubmit(username.value, password.value);
   }
 
   render () {
@@ -90,6 +95,7 @@ class SignUpForm extends React.Component {
         onChange={this.handleInputChange}
         margin="normal"
         error={!password.isValid}
+        autoComplete="new-password"
       />
         <TextField
           fullWidth
@@ -103,6 +109,7 @@ class SignUpForm extends React.Component {
           onChange={this.handleInputChange}
           margin="normal"
           error={!repeatedPassword.isValid}
+          autoComplete="new-password"
         />
         <Button fullWidth variant="raised" type="submit" color="primary" className={classes.button}>Sign Up</Button>
       </form>

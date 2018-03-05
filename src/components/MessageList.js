@@ -9,14 +9,33 @@ const styles = theme => ({
   },
 });
 
-const MessageList = ({ classes, messages }) => {
-  return (
-    <div className={classes.MessageList}>
-      { messages && messages.map((message, key) => 
-        <Message key={key} {...message} />
-      )}
-    </div>
-  );
+class MessageList extends React.Component {
+  componentDidMount() {
+    this.scrollDownHistory();
+  }
+
+  componentDidUpdate() {
+    this.scrollDownHistory();
+  }
+
+  scrollDownHistory() {
+    const messagesWrapper = this.refs.messagesWrapper;
+    if (messagesWrapper) {
+      messagesWrapper.scrollTop = messagesWrapper.scrollHeight;
+    }
+  }
+
+  render() {
+    const { classes, messages } = this.props;
+
+    return (
+      <div className={classes.MessageList} ref="messagesWrapper">
+        { messages && messages.map((message, key) => 
+          <Message key={key} {...message} />
+        )}
+      </div>
+    );
+  };
 }
 
 export default withStyles(styles)(MessageList);
