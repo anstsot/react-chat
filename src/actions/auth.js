@@ -27,7 +27,7 @@ export function signup(username, password) {
 
       throw new Error(json.message);
     })
-    .then(json => dispatch({
+    .then(json =>{
       if (!json.token) {
         throw new Error('Token has not been provided!');
       }
