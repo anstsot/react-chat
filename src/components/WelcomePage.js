@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -43,8 +44,14 @@ class WelcomePage extends React.Component {
   };
 
   render () {
-    const { classes } = this.props;
+    const { classes, signup, login, isAuthenticated } = this.props;
     const { value } = this.state;
+
+    if (isAuthenticated) {
+      return (
+        <Redirect to="/chat" />
+      );
+    }
 
     return (
       <div className={classes.root}>
@@ -63,8 +70,8 @@ class WelcomePage extends React.Component {
                 <Tab label="Sign Up" />
               </Tabs>
             </AppBar>
-            {value === 0 && <LoginForm/>}
-            {value === 1 && <SignUpForm/>}
+            {value === 0 && <LoginForm onSubmit={login}/>}
+            {value === 1 && <SignUpForm onSubmit={signup}/>}
           </Paper>
         </div>
       </div>
