@@ -35,7 +35,7 @@ class MessageList extends React.Component {
         )}
       </div>
     );
-};
+  };
 }
 
 export default withStyles(styles)(MessageList);
