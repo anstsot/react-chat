@@ -46,7 +46,7 @@ class SignUpForm extends React.Component {
     this.setState((prevState) =>({
       [name]: {
         ...prevState[name],
-        value: [value],
+        value,
       }
     }));
   };

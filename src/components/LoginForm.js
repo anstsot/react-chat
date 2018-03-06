@@ -27,10 +27,11 @@ class LoginForm extends React.Component {
   handleInputChange = event => {
     event.persist();
     const { name, value } = event.target;
+
     this.setState((prevState) =>({
       [name]: {
         ...prevState[name],
-        value: [value],
+        value,
       }
     }));
   };
@@ -58,7 +59,7 @@ class LoginForm extends React.Component {
           value={username.value}
           name="username"
           onChange={this.handleInputChange}
-          autoComplete = "username"
+          autoComplete="username"
           margin="normal"
           error={!username.isValid}
           fullWidth
