@@ -15,14 +15,18 @@ const styles = theme => ({
   },
 });
 
-const ChatPage = ({classes}) => {
-  return (
-    <div className={classes.root}>
-      <ChatHeader />
-      <Sidebar chats={chats} />
-      <Chat messages={messages} />
-    </div>
-  );
-};
+class ChatPage extends React.Component {
+  render() {
+    const {classes, logout} = this.props;
+
+    return (
+      <div className={classes.root}>
+        <ChatHeader logout={logout} />
+        <Sidebar chats={chats} />
+        <Chat messages={messages} />
+      </div>
+    );
+  };
+}
 
 export default withStyles(styles)(ChatPage);

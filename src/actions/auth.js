@@ -1,4 +1,4 @@
-import * as types from '../constants';
+import * as types from '../constants/auth';
 import callApi from '../utils/call-api';
 
 export function signup(username, password) {
@@ -64,8 +64,22 @@ export function logout() {
   return (dispatch) => {
     dispatch({
       type: types.LOGOUT_REQUEST,
+    });
+
+    return callApi('/logout')
+    .then(json => {
+      localStorage.removeItem('token');
+
+      dispatch({
+        type: types.LOGOUT_SUCCESS,
+        payload: json,
+      })
     })
-  }
+    .catch(reason => dispatch({
+      type: types.LOGOUT_FAILURE,
+      payload: reason,
+    }));
+  };
 }
 
 export function recieveAuth() {
