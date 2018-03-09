@@ -3,7 +3,7 @@ import Sidebar from './Sidebar';
 import ChatHeader from './ChatHeader';
 import Chat from './Chat';
 import { withStyles } from 'material-ui/styles';
-import { chats, messages } from '../mock-data';
+import { messages } from '../mock-data';
 
 const styles = theme => ({
   root: {
@@ -16,15 +16,24 @@ const styles = theme => ({
 });
 
 class ChatPage extends React.Component {
+  componentDidMount(){
+    const { getAllChats, getMyChats } = this.props;
+    
+    Promise.all([
+      getAllChats(),
+      getMyChats(),
+    ]);
+  }
+
   render() {
-    const {classes, logout} = this.props;
+    const {logout, chats} = this.props;
 
     return (
-      <div className={classes.root}>
+      <React.Fragment>
         <ChatHeader logout={logout} />
         <Sidebar chats={chats} />
         <Chat messages={messages} />
-      </div>
+      </React.Fragment>
     );
   };
 }
