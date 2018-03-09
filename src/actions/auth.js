@@ -62,31 +62,16 @@ export function login(username, password) {
 
 export function logout() {
   return (dispatch) => {
+    localStorage.removeItem('token');
     dispatch({
-      type: types.LOGOUT_REQUEST,
+      type: types.LOGOUT,
     });
-
-    return callApi('/logout')
-    .then(json => {
-      localStorage.removeItem('token');
-
-      dispatch({
-        type: types.LOGOUT_SUCCESS,
-        payload: json,
-      })
-    })
-    .catch(reason => dispatch({
-      type: types.LOGOUT_FAILURE,
-      payload: reason,
-    }));
   };
 }
 
 export function recieveAuth() {
   return (dispatch, getState) => {
     const { token } = getState().auth;
-
-    console.log(token);
 
     dispatch({
       type: types.RECIEVE_AUTH_REQUEST,
