@@ -2,11 +2,22 @@ import * as types from '../constants';
 import { combineReducers } from 'redux';
 
 const initialState = {
-  activeChat: '',
+  activeChat: null,
   allChats: [],
   myChats: [],
   chatList: {}
 };
+
+const activeChat = (state = initialState.activeChat, action) => {
+  switch (action.type) {
+    case types.SET_ACTIVE_CHAT:
+      return action.payload.chat;
+    case types.UNSET_ACTIVE_CHAT:
+      return null;
+    default:
+      return state;
+  }
+}
 
 const allChats = (state = initialState.allChats, action) => {
   switch (action.type) {
@@ -43,10 +54,12 @@ const chatList = (state = initialState.chatList, action) => {
 }
 
 export default combineReducers({
+  activeChat,
   allChats,
   myChats,
   chatList,
 });
 
 export const getChatId = (chat) => chat._id;
+export const getChatsById = (state, id) => state.chatList[id];
 export const getChatsByIds = (state, ids) => ids.map(id => state.chatList[id]);

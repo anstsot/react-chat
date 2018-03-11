@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Avatar from './Avatar';
+import getColor from '../utils/color-from';
 
 const styles = theme => ({
   MessageDiv: {
@@ -14,6 +15,10 @@ const styles = theme => ({
   },
   messageDivFromMe: {
     justifyContent: 'flex-end',
+  },
+  messageDivJoined: {
+    display: 'block',
+    textAlign: 'center',
   },
   Message: {
     maxWidth: '70%',
@@ -27,22 +32,37 @@ const styles = theme => ({
   },
 });
 
-const Message = ({ classes, sender, content }) => {
-  const isMessageFromMe = sender === 'me';
+const Message = ({ classes, sender, content, userId, statusMessage, createdAt }) => {
+  const isMessageFromMe = sender._id === userId;
+  const colorMessage = getColor(sender.username);
 
   const UserAvatar =  (
-    <Avatar colorFrom={sender}>{ sender }</Avatar>
+    <Avatar colorFrom={sender.username}>{ sender.username }</Avatar>
   );
+
+  if (statusMessage) {
+    return (
+      <div className={ classnames(classes.MessageDiv, classes.messageDivJoined) }>
+      <Typography variant="body1">
+        <span style={{color: colorMessage}}>{sender.username}</span>{content}
+      </Typography>
+      <Typography variant="caption">{createdAt}</Typography>
+      </div>
+    );
+  }
 
   return (
     <div className={ classnames(classes.MessageDiv, isMessageFromMe && classes.messageDivFromMe) }>
       {!isMessageFromMe && UserAvatar}
       <Paper className={ classnames(classes.Message, isMessageFromMe && classes.messageFromMe) }>
-        <Typography variant="caption">
-          {sender}
+        <Typography variant="caption" style={{color: colorMessage}}>
+          {sender.username}
         </Typography>
         <Typography variant="body1">
           {content}
+        </Typography>
+        <Typography variant="caption">
+          {createdAt}
         </Typography>
       </Paper>
       {isMessageFromMe && UserAvatar}

@@ -4,6 +4,7 @@ import Message from './Message';
 
 const styles = theme => ({
   MessageList: {
+    width: '100%',
     height: 'calc(100% - 56px)',
     overflowY: 'scroll',
   },
@@ -26,12 +27,12 @@ class MessageList extends React.Component {
   }
 
   render() {
-    const { classes, messages } = this.props;
+    const { classes, messages, userId } = this.props;
 
     return (
       <div className={classes.MessageList} ref="messagesWrapper">
-        { messages && messages.map((message, key) => 
-          <Message key={key} {...message} />
+        { messages!=null && messages.map((message, key) => 
+          <Message key={key} userId={userId} {...message} />
         )}
       </div>
     );

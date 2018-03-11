@@ -10,11 +10,11 @@ const styles = theme => ({
   },
 });
 
-const ChatList = ({ classes, chats }) => {
+const ChatList = ({ classes, chats, activeChat }) => {
   return (
     <List className={ classes.ChatsList }>
       { chats && chats.map((chat, key) => 
-        <ChatListItem key={ key } { ...chat } />
+        <ChatListItem key={key} activeChat={activeChat} { ...chat } />
       )}
     </List>
   );

@@ -43,6 +43,41 @@ export function getAllChats() {
     };
 }
 
-export function setActiveChat() {
-    
+export function getActiveChat(chatId) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: types.GET_ACTIVE_CHAT_REQUEST,
+    });
+    const { token } = getState().auth;
+
+    return callApi(`/chats/${chatId}`, token)
+    .then(json =>{
+      dispatch({
+        type: types.GET_ACTIVE_CHAT_SUCCESS,
+        payload: json,
+      })
+      return json;
+    })
+    .catch(reason => dispatch({
+      type: types.GET_ACTIVE_CHAT_FAILURE,
+      payload: reason,
+    }));
+  };
+}
+
+export function setActiveChat(chatId) {
+  return (dispatch) => {
+    return dispatch(getActiveChat(chatId))
+      .then(data => {
+        if (!data) {
+          dispatch({
+            type: types.UNSET_ACTIVE_CHAT,
+          });
+        }
+        dispatch({
+          type: types.SET_ACTIVE_CHAT,
+          payload: data,
+        });
+      })
+  };
 }

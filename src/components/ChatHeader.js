@@ -4,6 +4,8 @@ import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
 import Typography from "material-ui/Typography";
 import ChatUserMenu from './ChatUserMenu';
+import Avatar from './Avatar';
+import { NavigationUnfoldLess } from 'material-ui';
 
 const styles = theme => ({
   appBar: {
@@ -12,23 +14,26 @@ const styles = theme => ({
   },
   appTypography: {
     flex: 1,
+    marginLeft: theme.spacing.unit,
   },
 })
 
 class ChatHeader extends React.Component {
   render() {
-   const { classes, logout } = this.props;
+   const { classes, logout, chatName } = this.props;
+   const title = chatName ? chatName : 'First React Chat';
 
    return (
     <AppBar className={classes.appBar}>
       <Toolbar>
+          {chatName ? (<Avatar colorFrom={title}>{title}</Avatar>) : null}
         <Typography className={classes.appTypography} variant="title" color="inherit" noWrap>
-          First React Chat
+          {title}
         </Typography>
         <ChatUserMenu 
           onLogoutClick={logout}
         />
-      </Toolbar>
+      </Toolbar>NavigationUnfoldLess
     </AppBar>
     );
   }
