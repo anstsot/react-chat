@@ -5,6 +5,7 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Avatar from './Avatar';
 import getColor from '../utils/color-from';
+import dateFormat from '../utils/date-format';
 
 const styles = theme => ({
   MessageDiv: {
@@ -46,7 +47,7 @@ const Message = ({ classes, sender, content, userId, statusMessage, createdAt })
       <Typography variant="body1">
         <span style={{color: colorMessage}}>{sender.username}</span>{content}
       </Typography>
-      <Typography variant="caption">{createdAt}</Typography>
+      <Typography variant="caption">{dateFormat(createdAt)}</Typography>
       </div>
     );
   }
@@ -58,12 +59,8 @@ const Message = ({ classes, sender, content, userId, statusMessage, createdAt })
         <Typography variant="caption" style={{color: colorMessage}}>
           {sender.username}
         </Typography>
-        <Typography variant="body1">
-          {content}
-        </Typography>
-        <Typography variant="caption">
-          {createdAt}
-        </Typography>
+        <Typography variant="body1">{content}</Typography>
+        <Typography variant="caption">{dateFormat(createdAt)}</Typography>
       </Paper>
       {isMessageFromMe && UserAvatar}
     </div>

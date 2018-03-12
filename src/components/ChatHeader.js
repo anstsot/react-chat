@@ -5,7 +5,6 @@ import Toolbar from "material-ui/Toolbar";
 import Typography from "material-ui/Typography";
 import ChatUserMenu from './ChatUserMenu';
 import Avatar from './Avatar';
-import { NavigationUnfoldLess } from 'material-ui';
 
 const styles = theme => ({
   appBar: {
@@ -33,7 +32,7 @@ class ChatHeader extends React.Component {
         <ChatUserMenu 
           onLogoutClick={logout}
         />
-      </Toolbar>NavigationUnfoldLess
+      </Toolbar>
     </AppBar>
     );
   }
