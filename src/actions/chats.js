@@ -103,3 +103,27 @@ export function addNewChat(title) {
 
   };
 }
+
+export function joinChat(chatId) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: types.JOIN_CHAT_REQUEST,
+    });
+    const { token } = getState().auth;
+
+    return callApi(`/chats/${chatId}/join`, token)
+    .then(json =>{
+      dispatch({
+        type: types.JOIN_CHAT_SUCCESS,
+        payload: json,
+      });
+      dispatch(setActiveChat(chatId));
+      return json.chat;
+    })
+    .catch(reason => dispatch({
+      type: types.JOIN_CHAT_FAILURE,
+      payload: reason,
+    }));
+
+  };
+}

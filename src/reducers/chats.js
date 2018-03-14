@@ -38,6 +38,7 @@ const myChats = (state = initialState.myChats, action) => {
     case types.MY_CHATS_SUCCESS:
       return action.payload.chats.map(getChatId);
     case types.ADD_NEW_CHAT_SUCCESS:
+    case types.JOIN_CHAT_SUCCESS:
       return [
         ...state,
         getChatId(action.payload.chat),
@@ -59,6 +60,7 @@ const chatList = (state = initialState.chatList, action) => {
         }), {}),
       }
     case types.ADD_NEW_CHAT_SUCCESS:
+    case types.JOIN_CHAT_SUCCESS:
       return {
         ...state,
         [getChatId(action.payload.chat)]: action.payload.chat,

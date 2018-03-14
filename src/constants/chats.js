@@ -16,3 +16,7 @@ export const GET_ACTIVE_CHAT_FAILURE = Symbol('chats/GET_ACTIVE_CHAT_FAILURE');
 export const ADD_NEW_CHAT_REQUEST = Symbol('chats/ADD_NEW_CHAT_REQUEST');
 export const ADD_NEW_CHAT_SUCCESS = Symbol('chats/ADD_NEW_CHAT_SUCCESS');
 export const ADD_NEW_CHAT_FAILURE = Symbol('chats/ADD_NEW_CHAT_FAILURE');
+
+export const JOIN_CHAT_REQUEST = Symbol('chats/JOIN_CHAT_REQUEST');
+export const JOIN_CHAT_SUCCESS = Symbol('chats/JOIN_CHAT_SUCCESS');
+export const JOIN_CHAT_FAILURE = Symbol('chats/JOIN_CHAT_FAILURE');

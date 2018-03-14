@@ -33,14 +33,19 @@ class ChatPage extends React.Component {
     if (nextId && nextId !== match.params.id) setActiveChat(nextId);
   }
 
+  joinChatClick = () => {
+    const { activeChat, joinChat } = this.props;
+    joinChat(activeChat._id);
+  }
+
   render() {
-    const {logout, chats, activeChat, user, addNewChat} = this.props;
+    const {logout, chats, activeChat, user, addNewChat } = this.props;
 
     return (
       <React.Fragment>
         <ChatHeader logout={logout} chatName={activeChat && activeChat.title}/>
         <Sidebar chats={chats} addNewChat={addNewChat} activeChat={activeChat && activeChat._id}/>
-        <Chat messages={activeChat && activeChat.messages} userId={user._id}/>
+        <Chat messages={activeChat && activeChat.messages} user={user} joinChatClick={this.joinChatClick}/>
       </React.Fragment>
     );
   };

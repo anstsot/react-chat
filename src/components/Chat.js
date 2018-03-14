@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import MessageList from './MessageList';
 import MessageInput from './MessageInput';
+import ChatJoin from './ChatJoin';
 
 const styles = theme => ({
   contentChat: {
@@ -18,11 +19,11 @@ const styles = theme => ({
   },
 });
 
-const Chat = ({ classes, messages, userId }) => {
+const Chat = ({ classes, messages, user, joinChatClick }) => {
   return (
     <main className={classes.contentChat}>
-      <MessageList messages={messages} userId={userId}/>
-      <MessageInput />
+      <MessageList messages={messages} userId={user._id}/>
+      { user.isChatMember ? <MessageInput /> : <ChatJoin joinChatClick={joinChatClick} /> }
     </main>
   );
 }
