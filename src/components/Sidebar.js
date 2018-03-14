@@ -23,21 +23,34 @@ const styles = theme => ({
   },
 });
 
-const Sidebar = ({ classes, chats, activeChat }) => {
-  return (
-    <Drawer variant="permanent" classes={{ paper: classes.drawerPaper,}}>
-      <div className={classes.drawerHeader}>
-        <TextField fullWidth placeholder="Search chats..." margin="normal"/>
-      </div>
-      <Divider />
-      <ChatList chats={ chats } activeChat={activeChat}/>
-      <NewChatButton />
-      <BottomNavigation showLabels>
-        <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
-      </BottomNavigation>
-    </Drawer>
-  )
+class Sidebar extends React.Component{
+  state = {
+    activeChats: 1,
+  };
+
+  handleChatsChange = (event, activeChats) => {
+    this.setState({ activeChats });
+  }
+
+  render() {
+    const { classes, chats, activeChat, addNewChat } = this.props;
+    const { activeChats } = this.state;
+
+    return (
+      <Drawer variant="permanent" classes={{ paper: classes.drawerPaper,}}>
+        <div className={classes.drawerHeader}>
+          <TextField fullWidth placeholder="Search chats..." margin="normal"/>
+        </div>
+        <Divider />
+        <ChatList chats={ activeChats === 0 ? chats.my : chats.all } activeChat={activeChat}/>
+        <NewChatButton addNewChatClick={addNewChat}/>
+        <BottomNavigation showLabels value={activeChats} onChange={this.handleChatsChange}>
+          <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
+          <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
+        </BottomNavigation>
+      </Drawer>
+    )
+  }
 };
 
 export default withStyles(styles)(Sidebar);

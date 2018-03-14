@@ -54,11 +54,9 @@ class SignUpForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    //if (!this.validate()) return;
+    if (!this.validate()) return;
 
     const { username, password } = this.state;
-
-    console.log('Sign Up: ', username.value, password.value);
 
     this.props.onSubmit(username.value, password.value);
   }

@@ -23,6 +23,11 @@ const allChats = (state = initialState.allChats, action) => {
   switch (action.type) {
     case types.CHATS_SUCCESS:
       return action.payload.chats.map(getChatId);
+    case types.ADD_NEW_CHAT_SUCCESS:
+      return [
+        ...state,
+        getChatId(action.payload.chat),
+      ]
     default:
       return state;
   }
@@ -32,6 +37,11 @@ const myChats = (state = initialState.myChats, action) => {
   switch (action.type) {
     case types.MY_CHATS_SUCCESS:
       return action.payload.chats.map(getChatId);
+    case types.ADD_NEW_CHAT_SUCCESS:
+      return [
+        ...state,
+        getChatId(action.payload.chat),
+      ]
     default:
       return state;
   }
@@ -48,6 +58,11 @@ const chatList = (state = initialState.chatList, action) => {
           [chat._id]: chat,
         }), {}),
       }
+    case types.ADD_NEW_CHAT_SUCCESS:
+      return {
+        ...state,
+        [getChatId(action.payload.chat)]: action.payload.chat,
+      }
     default:
       return state;
   }
@@ -61,5 +76,5 @@ export default combineReducers({
 });
 
 export const getChatId = (chat) => chat._id;
-export const getChatsById = (state, id) => state.chatList[id];
+export const getChatById = (state, id) => state.chatList[id];
 export const getChatsByIds = (state, ids) => ids.map(id => state.chatList[id]);

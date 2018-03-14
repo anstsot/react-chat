@@ -34,12 +34,12 @@ class ChatPage extends React.Component {
   }
 
   render() {
-    const {logout, chats, activeChat, user} = this.props;
+    const {logout, chats, activeChat, user, addNewChat} = this.props;
 
     return (
       <React.Fragment>
         <ChatHeader logout={logout} chatName={activeChat && activeChat.title}/>
-        <Sidebar chats={chats} activeChat={activeChat && activeChat._id}/>
+        <Sidebar chats={chats} addNewChat={addNewChat} activeChat={activeChat && activeChat._id}/>
         <Chat messages={activeChat && activeChat.messages} userId={user._id}/>
       </React.Fragment>
     );

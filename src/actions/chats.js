@@ -81,3 +81,25 @@ export function setActiveChat(chatId) {
       })
   };
 }
+
+export function addNewChat(title) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: types.ADD_NEW_CHAT_REQUEST,
+    });
+    const { token } = getState().auth;
+
+    return callApi('/chats', token, {method: 'POST'}, {data: {title: title}})
+    .then(json =>{
+      dispatch({
+        type: types.ADD_NEW_CHAT_SUCCESS,
+        payload: json,
+      })
+    })
+    .catch(reason => dispatch({
+      type: types.ADD_NEW_CHAT_FAILURE,
+      payload: reason,
+    }));
+
+  };
+}
