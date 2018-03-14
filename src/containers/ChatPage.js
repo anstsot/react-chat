@@ -6,12 +6,17 @@ import ChatPage from '../components/ChatPage';
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user,
     chats: {
         my: chatFunctions.getChatsByIds(state.chats, state.chats.myChats), 
         all: chatFunctions.getChatsByIds(state.chats, state.chats.allChats), 
     },
     activeChat: state.chats.activeChat,
+    user: {
+        ...state.auth.user,
+        isMember: chatFunctions.isMember(state.auth.user._id, state.chats.activeChat),
+        isCreator: chatFunctions.isCreator(state.auth.user._id, state.chats.activeChat),
+        isChatMember: chatFunctions.isChatMember(state.auth.user._id, state.chats.activeChat),
+    },
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
