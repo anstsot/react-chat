@@ -25,11 +25,26 @@ const styles = theme => ({
 
 class Sidebar extends React.Component{
   state = {
-    activeChats: 1,
+    activeChats: 0,
+    search: '',
   };
 
   handleChatsChange = (event, activeChats) => {
     this.setState({ activeChats });
+  }
+
+  handleSearchChange = event => {
+    this.setState({
+      search: event.target.value,
+    });
+  }
+
+  filterChats = (chats) => {
+    const { search } = this.state;
+
+    return chats.filter(chat => 
+      chat.title.toLowerCase().includes(search.toLowerCase())
+    );
   }
 
   render() {
@@ -37,12 +52,17 @@ class Sidebar extends React.Component{
     const { activeChats } = this.state;
 
     return (
-      <Drawer variant="permanent" classes={{ paper: classes.drawerPaper,}}>
+      <Drawer variant="permanent" classes={{ paper: classes.drawerPaper}}>
         <div className={classes.drawerHeader}>
-          <TextField fullWidth placeholder="Search chats..." margin="normal"/>
+          <TextField 
+            fullWidth 
+            placeholder="Search chats..." 
+            margin="normal" 
+            value={this.state.searchs}
+            onChange={this.handleSearchChange}/>
         </div>
         <Divider />
-        <ChatList chats={ activeChats === 0 ? chats.my : chats.all } activeChat={activeChat}/>
+        <ChatList chats={ this.filterChats(activeChats === 0 ? chats.my : chats.all) } activeChat={activeChat}/>
         <NewChatButton addNewChatClick={addNewChat}/>
         <BottomNavigation showLabels value={activeChats} onChange={this.handleChatsChange}>
           <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />

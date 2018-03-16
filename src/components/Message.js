@@ -38,7 +38,7 @@ const Message = ({ classes, sender, content, userId, statusMessage, createdAt })
   const colorMessage = getColor(sender.username);
 
   const UserAvatar =  (
-    <Avatar colorFrom={sender.username}>{ sender.username }</Avatar>
+    <Avatar colorFrom={sender.username}>{ (sender.firstName && sender.lastName) ? sender.firstName + ' ' + sender.lastName : sender.username }</Avatar>
   );
 
   if (statusMessage) {

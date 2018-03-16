@@ -2,18 +2,6 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import ChatHeader from './ChatHeader';
 import Chat from './Chat';
-import { withStyles } from 'material-ui/styles';
-import { messages } from '../mock-data';
-
-const styles = theme => ({
-  root: {
-    position: 'relative',
-    display: 'flex',
-    width: '100%',
-    height: '100%',
-    backgroundColor: theme.palette.background.default,
-  },
-});
 
 class ChatPage extends React.Component {
   componentDidMount(){
@@ -48,8 +36,13 @@ class ChatPage extends React.Component {
     deleteChat(activeChat._id);
   }
 
+  deleteChatClick = () => {
+    const { activeChat, deleteChat } = this.props;
+    deleteChat(activeChat._id);
+  }
+
   render() {
-    const {logout, chats, activeChat, user, addNewChat } = this.props;
+    const {logout, chats, activeChat, user, addNewChat, sendMessage, editProfile } = this.props;
 
     return (
       <React.Fragment>
@@ -59,12 +52,19 @@ class ChatPage extends React.Component {
           leaveChatClick={this.leaveChatClick} 
           deleteChatClick={this.deleteChatClick} 
           chatName={activeChat && activeChat.title}
+          editProfile={editProfile}
         />
         <Sidebar chats={chats} addNewChat={addNewChat} activeChat={activeChat && activeChat._id}/>
-        <Chat messages={activeChat && activeChat.messages} user={user} joinChatClick={this.joinChatClick}/>
+        <Chat 
+          messages={activeChat && activeChat.messages} 
+          user={user} 
+          joinChatClick={this.joinChatClick}
+          activeChat={activeChat}
+          sendMessage={sendMessage}
+        />
       </React.Fragment>
     );
   };
 }
 
-export default withStyles(styles)(ChatPage);
+export default ChatPage;

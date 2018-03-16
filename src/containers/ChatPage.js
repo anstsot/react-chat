@@ -1,6 +1,9 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { logout, getAllChats, getMyChats, setActiveChat, addNewChat, joinChat, leaveChat, deleteChat } from '../actions';
+import { 
+    logout, getAllChats, getMyChats, 
+    setActiveChat, addNewChat, joinChat, 
+    leaveChat, deleteChat, sendMessage, editProfile } from '../actions';
 import * as chatFunctions from '../reducers/chats';
 import ChatPage from '../components/ChatPage';
 
@@ -28,6 +31,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     joinChat,
     leaveChat,
     deleteChat,
+    sendMessage,
+    editProfile,
 }, dispatch);
 
 export default connect(

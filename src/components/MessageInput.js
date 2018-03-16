@@ -19,14 +19,43 @@ const styles = theme => ({
   },
 });
 
-const MessageInput = ({ classes }) => {
-  return (
-    <div className={classes.MessageInputDiv}>
-      <Paper className={classes.MessageInput} elevation={6}>
-        <Input fullWidth placeholder="Type your message…"/>
-      </Paper>
-    </div>
-  );
+class MessageInput extends React.Component {
+  state = {
+    value: '',
+  }
+
+  handleMessageChange = (event) => {
+    this.setState({
+      value: event.target.value,
+    });
+  }
+
+  handleKeyPress = (event) => {
+    const { value } = this.state;
+
+    if (event.key === 'Enter' && value) {
+      this.props.sendMessage(value);
+      this.setState({ value: '' });
+    }
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className={classes.MessageInputDiv}>
+        <Paper className={classes.MessageInput} elevation={6}>
+          <Input 
+            fullWidth 
+            placeholder="Type your message…"
+            value={this.state.value}
+            onChange={this.handleMessageChange}
+            onKeyPress={this.handleKeyPress}
+          />
+        </Paper>
+      </div>
+    );
+  }
 }
 
 export default withStyles(styles)(MessageInput);

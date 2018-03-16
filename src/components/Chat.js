@@ -3,6 +3,8 @@ import { withStyles } from 'material-ui/styles';
 import MessageList from './MessageList';
 import MessageInput from './MessageInput';
 import ChatJoin from './ChatJoin';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   contentChat: {
@@ -12,18 +14,29 @@ const styles = theme => ({
     alignItems: 'center',
     paddingTop: '64px',
     height: '100%',
-    minHeight: 'calc(100vh - 184px)',
+    minHeight: 'calc(100vh - 64px)',
     overflow: 'hidden',
     marginLeft: '320px',
-    paddingBottom: '120px',
   },
+  startPaper: {
+    padding: theme.spacing.unit * 3,
+    height: '100px',
+  }
 });
 
-const Chat = ({ classes, messages, user, joinChatClick }) => {
+const Chat = ({ classes, messages, user, joinChatClick, activeChat, sendMessage }) => {
+
   return (
     <main className={classes.contentChat}>
-      <MessageList messages={messages} userId={user._id}/>
-      { user.isChatMember ? <MessageInput /> : <ChatJoin joinChatClick={joinChatClick} /> }
+      { activeChat ? 
+        <MessageList messages={messages} userId={user._id}/> 
+        : <Paper className={classes.startPaper} elevation={4}>
+            <Typography variant="headline" component="h3">Start messaging...</Typography>
+            <Typography component="p">Use <b>>Global</b> to explore communities around here.</Typography>
+            <Typography component="p">Use <b>>Recents</b> to see your recent conversations.</Typography>
+          </Paper> 
+      }
+      { activeChat ? user.isChatMember ? <MessageInput sendMessage={(content) => sendMessage(activeChat._id, content)} /> : <ChatJoin joinChatClick={joinChatClick} /> : null }
     </main>
   );
 }

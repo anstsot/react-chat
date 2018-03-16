@@ -11,8 +11,10 @@ const initialState = {
 const activeChat = (state = initialState.activeChat, action) => {
   switch (action.type) {
     case types.SET_ACTIVE_CHAT:
+    case types.JOIN_CHAT_SUCCESS:
       return action.payload.chat;
     case types.UNSET_ACTIVE_CHAT:
+    case types.DELETE_CHAT_SUCCESS:
       return null;
     default:
       return state;
