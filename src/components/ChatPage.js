@@ -2,6 +2,7 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import ChatHeader from './ChatHeader';
 import Chat from './Chat';
+import ErrorMessage from './ErrorMessage';
 
 class ChatPage extends React.Component {
   componentDidMount(){
@@ -52,7 +53,7 @@ class ChatPage extends React.Component {
   }
 
   render() {
-    const {logout, chats, activeChat, user, addNewChat, sendMessage, editProfile } = this.props;
+    const {logout, chats, activeChat, user, addNewChat, sendMessage, editProfile, error } = this.props;
 
     return (
       <React.Fragment>
@@ -72,6 +73,7 @@ class ChatPage extends React.Component {
           activeChat={activeChat}
           sendMessage={sendMessage}
         />
+        <ErrorMessage error={error} />
       </React.Fragment>
     );
   };

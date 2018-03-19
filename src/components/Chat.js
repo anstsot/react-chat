@@ -25,7 +25,7 @@ const styles = theme => ({
 });
 
 const Chat = ({ classes, messages, user, joinChatClick, activeChat, sendMessage }) => {
-
+  
   return (
     <main className={classes.contentChat}>
       { activeChat ? 

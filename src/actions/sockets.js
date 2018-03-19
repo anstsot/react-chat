@@ -12,7 +12,13 @@ let socket = null;
 
 export function socketConnect() {
   return (dispatch, getState) => {
-    const { token } = getState().auth;
+    const state = getState();
+    const { token } = state.auth;
+    const { isFetching } = state.services;
+
+    if ( isFetching.sockets ) {
+      return Promise.resolve();
+    }
 
     dispatch({
       type: types.SOCKETS_CONNECTION_REQUEST,
@@ -71,7 +77,7 @@ export function socketConnect() {
 
 export function sendMessage(content) {
   return (dispatch, getState) => {
-    const { activeChat } = getState().chats;
+    const { activeChat } = getState().chat;
 
     if (!socket) {
       dispatch(missingSocketConnection());

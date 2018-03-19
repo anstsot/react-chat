@@ -4,10 +4,17 @@ import { redirect } from './services';
 
 export function getMyChats() {
   return (dispatch, getState) => {
+    const state = getState();
+    const { token } = state.auth;
+    const { isFetching } = state.services;
+
+    if ( isFetching.myChats ) {
+      return Promise.resolve();
+    }
+
     dispatch({
       type: types.MY_CHATS_REQUEST,
     });
-    const { token } = getState().auth;
 
     return callApi('/chats/my', token)
     .then(json =>{
@@ -25,10 +32,17 @@ export function getMyChats() {
 
 export function getAllChats() {
     return (dispatch, getState) => {
+      const state = getState();
+      const { token } = state.auth;
+      const { isFetching } = state.services;
+  
+      if ( isFetching.myChats ) {
+        return Promise.resolve();
+      }
+
       dispatch({
         type: types.CHATS_REQUEST,
       });
-      const { token } = getState().auth;
   
       return callApi('/chats', token)
       .then(json =>{
@@ -46,10 +60,17 @@ export function getAllChats() {
 
 export function getActiveChat(chatId) {
   return (dispatch, getState) => {
+    const state = getState();
+    const { token } = state.auth;
+    const { isFetching } = state.services;
+
+    if ( isFetching.chat ) {
+      return Promise.resolve();
+    }
+
     dispatch({
       type: types.GET_ACTIVE_CHAT_REQUEST,
     });
-    const { token } = getState().auth;
 
     return callApi(`/chats/${chatId}`, token)
     .then(json =>{
@@ -85,10 +106,17 @@ export function setActiveChat(chatId) {
 
 export function addNewChat(title) {
   return (dispatch, getState) => {
+    const state = getState();
+    const { token } = state.auth;
+    const { isFetching } = state.services;
+
+    if ( isFetching.createChat ) {
+      return Promise.resolve();
+    }
+
     dispatch({
       type: types.ADD_NEW_CHAT_REQUEST,
     });
-    const { token } = getState().auth;
 
     return callApi('/chats', token, {method: 'POST'}, {data: { title }})
     .then(json =>{
@@ -107,10 +135,17 @@ export function addNewChat(title) {
 
 export function joinChat(chatId) {
   return (dispatch, getState) => {
+    const state = getState();
+    const { token } = state.auth;
+    const { isFetching } = state.services;
+
+    if ( isFetching.joinChat ) {
+      return Promise.resolve();
+    }
+
     dispatch({
       type: types.JOIN_CHAT_REQUEST,
     });
-    const { token } = getState().auth;
 
     return callApi(`/chats/${chatId}/join`, token)
     .then(json =>{
@@ -129,10 +164,17 @@ export function joinChat(chatId) {
 
 export function leaveChat(chatId) {
   return (dispatch, getState) => {
+    const state = getState();
+    const { token } = state.auth;
+    const { isFetching } = state.services;
+
+    if ( isFetching.leaveChat ) {
+      return Promise.resolve();
+    }
+
     dispatch({
       type: types.LEAVE_CHAT_REQUEST,
     });
-    const { token } = getState().auth;
 
     return callApi(`/chats/${chatId}/leave`, token)
     .then(json =>{
@@ -153,10 +195,17 @@ export function leaveChat(chatId) {
 
 export function deleteChat(chatId) {
   return (dispatch, getState) => {
+    const state = getState();
+    const { token } = state.auth;
+    const { isFetching } = state.services;
+
+    if ( isFetching.deleteChat ) {
+      return Promise.resolve();
+    }
+
     dispatch({
       type: types.DELETE_CHAT_REQUEST,
     });
-    const { token } = getState().auth;
 
     return callApi(`/chats/${chatId}`, token, {method: 'DELETE'})
     .then(json =>{

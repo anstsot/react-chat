@@ -15,13 +15,14 @@ const mapStateToProps = state => ({
         my: chatFunctions.getChatsByIds(state.chats, state.chats.myChats), 
         all: chatFunctions.getChatsByIds(state.chats, state.chats.allChats), 
     },
-    activeChat: { ...state.chats.activeChat, messages: state.messages },
+    activeChat: state.chats.activeChat,
     user: {
         ...state.auth.user,
         isMember: chatFunctions.isMember(state.auth.user._id, state.chats.activeChat),
         isCreator: chatFunctions.isCreator(state.auth.user._id, state.chats.activeChat),
         isChatMember: chatFunctions.isChatMember(state.auth.user._id, state.chats.activeChat),
     },
+    error: state.services.errors.chat,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

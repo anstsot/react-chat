@@ -35,17 +35,18 @@ const styles = theme => ({
 
 const Message = ({ classes, sender, content, userId, statusMessage, createdAt }) => {
   const isMessageFromMe = sender._id === userId;
-  const colorMessage = getColor(sender.username);
+  const userName = (sender.firstName && sender.lastName) ? sender.firstName + ' ' + sender.lastName : sender.username;
+  const colorMessage = getColor(userName);
 
   const UserAvatar =  (
-    <Avatar colorFrom={sender.username}>{ (sender.firstName && sender.lastName) ? sender.firstName + ' ' + sender.lastName : sender.username }</Avatar>
+    <Avatar colorFrom={userName}>{userName}</Avatar>
   );
 
   if (statusMessage) {
     return (
       <div className={ classnames(classes.MessageDiv, classes.messageDivJoined) }>
       <Typography variant="body1">
-        <span style={{color: colorMessage}}>{sender.username}</span>{content}
+        <span style={{color: colorMessage}}>{userName}</span>{content}
       </Typography>
       <Typography variant="caption">{dateFormat(createdAt)}</Typography>
       </div>
@@ -57,7 +58,7 @@ const Message = ({ classes, sender, content, userId, statusMessage, createdAt })
       {!isMessageFromMe && UserAvatar}
       <Paper className={ classnames(classes.Message, isMessageFromMe && classes.messageFromMe) }>
         <Typography variant="caption" style={{color: colorMessage}}>
-          {sender.username}
+          {userName}
         </Typography>
         <Typography variant="body1">{content}</Typography>
         <Typography variant="caption">{dateFormat(createdAt)}</Typography>
