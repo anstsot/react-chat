@@ -5,20 +5,30 @@ import Chat from './Chat';
 
 class ChatPage extends React.Component {
   componentDidMount(){
-    const { setActiveChat, getAllChats, getMyChats, match } = this.props;
+    const { setActiveChat, getAllChats, getMyChats, match, socketConnect, mountChat } = this.props;
     
     Promise.all([
       getAllChats(),
       getMyChats(),
-    ]).then(data => {
-      if (match.params.id) setActiveChat(match.params.id);
+    ]).then(() => {
+      socketConnect();
+    }).then(() => {
+      const { id } = match.params;
+      if (id) {
+        setActiveChat(id);
+        mountChat(id);
+      }
     });
   }
 
   componentWillReceiveProps(nextProps) {
-    const { setActiveChat, match } = this.props;
+    const { setActiveChat, match, mountChat, unmountChat } = this.props;
     const { id: nextId } = nextProps.match.params;
-    if (nextId && nextId !== match.params.id) setActiveChat(nextId);
+    if (nextId && nextId !== match.params.id) {
+      unmountChat(match.params.id);
+      setActiveChat(nextId);
+      mountChat(nextId);
+    }
   }
 
   joinChatClick = () => {

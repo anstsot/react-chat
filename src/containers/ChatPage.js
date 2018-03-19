@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { 
     logout, getAllChats, getMyChats, 
     setActiveChat, addNewChat, joinChat, 
-    leaveChat, deleteChat, sendMessage, editProfile } from '../actions';
+    leaveChat, deleteChat, editProfile, 
+    socketConnect, mountChat, unmountChat, sendMessage,
+} from '../actions';
 import * as chatFunctions from '../reducers/chats';
 import ChatPage from '../components/ChatPage';
 
@@ -13,7 +15,7 @@ const mapStateToProps = state => ({
         my: chatFunctions.getChatsByIds(state.chats, state.chats.myChats), 
         all: chatFunctions.getChatsByIds(state.chats, state.chats.allChats), 
     },
-    activeChat: state.chats.activeChat,
+    activeChat: { ...state.chats.activeChat, messages: state.messages },
     user: {
         ...state.auth.user,
         isMember: chatFunctions.isMember(state.auth.user._id, state.chats.activeChat),
@@ -31,8 +33,11 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     joinChat,
     leaveChat,
     deleteChat,
-    sendMessage,
     editProfile,
+    socketConnect, 
+    mountChat, 
+    unmountChat, 
+    sendMessage,
 }, dispatch);
 
 export default connect(

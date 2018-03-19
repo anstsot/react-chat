@@ -36,7 +36,7 @@ const Chat = ({ classes, messages, user, joinChatClick, activeChat, sendMessage 
             <Typography component="p">Use <b>>Recents</b> to see your recent conversations.</Typography>
           </Paper> 
       }
-      { activeChat ? user.isChatMember ? <MessageInput sendMessage={(content) => sendMessage(activeChat._id, content)} /> : <ChatJoin joinChatClick={joinChatClick} /> : null }
+      { activeChat ? user.isChatMember ? <MessageInput sendMessage={(content) => sendMessage(content)} /> : <ChatJoin joinChatClick={joinChatClick} /> : null }
     </main>
   );
 }

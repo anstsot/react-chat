@@ -118,7 +118,6 @@ export function joinChat(chatId) {
         type: types.JOIN_CHAT_SUCCESS,
         payload: json,
       });
-      dispatch(setActiveChat(chatId));
     })
     .catch(reason => dispatch({
       type: types.JOIN_CHAT_FAILURE,
@@ -169,29 +168,6 @@ export function deleteChat(chatId) {
     })
     .catch(reason => dispatch({
       type: types.DELETE_CHAT_FAILURE,
-      payload: reason,
-    }));
-
-  };
-}
-
-export function sendMessage(chatId, content) {
-  return (dispatch, getState) => {
-    dispatch({
-      type: types.SEND_MESSAGE_REQUEST,
-    });
-    const { token } = getState().auth;
-
-    return callApi(`/chats/${chatId}`, token, {method: 'POST'}, {data: { content , statusMessage : false }})
-    .then(json =>{
-      dispatch({
-        type: types.SEND_MESSAGE_SUCCESS,
-        payload: json,
-      });
-      dispatch(setActiveChat(chatId));
-    })
-    .catch(reason => dispatch({
-      type: types.SEND_MESSAGE_FAILURE,
       payload: reason,
     }));
 
