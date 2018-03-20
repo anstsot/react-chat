@@ -21,12 +21,12 @@ const styles = theme => ({
 
 class MessageInput extends React.Component {
   render() {
-    const { classes, joinChatClick } = this.props;
+    const { classes, joinChatClick, disabled } = this.props;
     
     return (
       <div className={classes.MessageInputDiv}>
         <Paper className={classes.MessageInput} elevation={6}>
-          <Button variant="raised" color="primary" fullWidth onClick={joinChatClick}>Join</Button>
+          <Button disabled={disabled} variant="raised" color="primary" fullWidth onClick={joinChatClick}>Join</Button>
         </Paper>
       </div>
     );

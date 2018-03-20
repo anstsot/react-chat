@@ -53,7 +53,7 @@ class ChatPage extends React.Component {
   }
 
   render() {
-    const {logout, chats, activeChat, user, addNewChat, sendMessage, editProfile, error } = this.props;
+    const {logout, chats, activeChat, user, addNewChat, sendMessage, editProfile, error, isConnected } = this.props;
 
     return (
       <React.Fragment>
@@ -64,14 +64,21 @@ class ChatPage extends React.Component {
           deleteChatClick={this.deleteChatClick} 
           chatName={activeChat && activeChat.title}
           editProfile={editProfile}
+          isConnected={isConnected}
         />
-        <Sidebar chats={chats} addNewChat={addNewChat} activeChat={activeChat && activeChat._id}/>
+        <Sidebar 
+          chats={chats} 
+          addNewChat={addNewChat} 
+          activeChat={activeChat && activeChat._id}
+          isConnected={isConnected}
+        />
         <Chat 
           messages={activeChat && activeChat.messages} 
           user={user} 
           joinChatClick={this.joinChatClick}
           activeChat={activeChat}
           sendMessage={sendMessage}
+          isConnected={isConnected}
         />
         <ErrorMessage error={error} />
       </React.Fragment>

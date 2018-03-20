@@ -40,12 +40,13 @@ class MessageInput extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, disabled } = this.props;
 
     return (
       <div className={classes.MessageInputDiv}>
         <Paper className={classes.MessageInput} elevation={6}>
           <Input 
+            disabled={disabled}
             fullWidth 
             placeholder="Type your message…"
             value={this.state.value}

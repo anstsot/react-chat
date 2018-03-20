@@ -24,7 +24,7 @@ const styles = theme => ({
   }
 });
 
-const Chat = ({ classes, messages, user, joinChatClick, activeChat, sendMessage }) => {
+const Chat = ({ classes, messages, user, joinChatClick, activeChat, sendMessage, isConnected }) => {
   
   return (
     <main className={classes.contentChat}>
@@ -36,7 +36,9 @@ const Chat = ({ classes, messages, user, joinChatClick, activeChat, sendMessage 
             <Typography component="p">Use <b>>Recents</b> to see your recent conversations.</Typography>
           </Paper> 
       }
-      { activeChat ? user.isChatMember ? <MessageInput sendMessage={(content) => sendMessage(content)} /> : <ChatJoin joinChatClick={joinChatClick} /> : null }
+      { activeChat ? 
+          user.isChatMember ? <MessageInput disabled={!isConnected} sendMessage={(content) => sendMessage(content)} /> 
+          : <ChatJoin disabled={!isConnected} joinChatClick={joinChatClick} /> : null }
     </main>
   );
 }

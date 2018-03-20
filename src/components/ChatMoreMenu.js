@@ -25,13 +25,14 @@ class ChatMoreMenu extends React.Component {
   };
   
   render() {    
-   const { user, leaveChatClick, deleteChatClick } = this.props;
+   const { user, leaveChatClick, deleteChatClick, disabled } = this.props;
    const { anchorEl } = this.state;
    const open = Boolean(anchorEl);
 
    return (
     <React.Fragment>
       <IconButton
+        disabled={disabled}
         aria-owns={open ? 'menu-appbar' : null}
         aria-haspopup="true"
         onClick={this.handleMenu}

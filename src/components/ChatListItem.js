@@ -11,9 +11,9 @@ const styles = theme => ({
   }
 });
 
-const ChatListItem = ({ classes, _id, title, updatedAt, activeChat }) => {
+const ChatListItem = ({ classes, _id, title, updatedAt, activeChat, disabled }) => {
   return (
-    <ListItem button component={Link} to={ `/chat/${_id}` } className={activeChat===_id && classes.activeChat}>
+    <ListItem disabled={disabled} button component={Link} to={ `/chat/${_id}` } className={activeChat===_id && classes.activeChat}>
       <Avatar colorFrom={title}>{title}</Avatar>
       <ListItemText primary={title} secondary={dateFormat(updatedAt)} />
     </ListItem>

@@ -87,7 +87,7 @@ class ChatUserMenu extends React.Component {
   };
 
   render() {    
-   const { classes } = this.props;
+   const { classes, disabled } = this.props;
    const { anchorEl, openModal, username, firstName, lastName } = this.state;
    const open = Boolean(anchorEl);
    const openm = Boolean(openModal);
@@ -99,6 +99,7 @@ class ChatUserMenu extends React.Component {
         aria-haspopup="true"
         onClick={this.handleMenu}
         color="inherit"
+        disabled={disabled}
       >
         <AccountCircle />
       </IconButton>

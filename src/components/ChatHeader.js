@@ -20,7 +20,7 @@ const styles = theme => ({
 
 class ChatHeader extends React.Component {
   render() {
-   const { classes, logout, chatName, user, leaveChatClick, deleteChatClick, editProfile } = this.props;
+   const { classes, logout, chatName, user, leaveChatClick, deleteChatClick, editProfile, isConnected } = this.props;
    const title = chatName ? chatName : 'First React Chat';
 
    return (
@@ -29,9 +29,21 @@ class ChatHeader extends React.Component {
           {chatName ? <Avatar colorFrom={title}>{title}</Avatar> : null}
         <Typography className={classes.appTypography} variant="title" color="inherit" noWrap>
           {title}
-          {user.isChatMember ? <ChatMoreMenu user={user} leaveChatClick={leaveChatClick} deleteChatClick={deleteChatClick} /> : null}
+          {user.isChatMember ? 
+            <ChatMoreMenu 
+              disabled={!isConnected} 
+              user={user} 
+              leaveChatClick={leaveChatClick} 
+              deleteChatClick={deleteChatClick} 
+            /> 
+            : null}
         </Typography>
-        <ChatUserMenu onLogoutClick={logout} user={user} editProfile={editProfile} />
+        <ChatUserMenu
+          disabled={!isConnected} 
+          onLogoutClick={logout} 
+          user={user} 
+          editProfile={editProfile} 
+        />
       </Toolbar>
     </AppBar>
     );

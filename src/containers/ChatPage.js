@@ -23,6 +23,7 @@ const mapStateToProps = state => ({
         isChatMember: chatFunctions.isChatMember(state.auth.user._id, state.chats.activeChat),
     },
     error: state.services.errors.chat,
+    isConnected: state.services.isConnected,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
