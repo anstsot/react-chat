@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from "material-ui/styles";
+import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import AccountCircle from 'material-ui-icons/AccountCircle';
 import Menu, { MenuItem } from 'material-ui/Menu';
@@ -11,12 +11,12 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-const styles = theme => ({
+const styles = () => ({
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
   },
-})
+});
 
 class ChatUserMenu extends React.Component {
   state = {
@@ -36,11 +36,7 @@ class ChatUserMenu extends React.Component {
     },
   };
 
-  handleChange = (event, checked) => {
-    this.setState({ auth: checked });
-  };
-
-  handleMenu = event => {
+  handleMenu = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
@@ -61,20 +57,20 @@ class ChatUserMenu extends React.Component {
     this.props.onLogoutClick();
     this.handleClose();
   };
-  
-  handleInputChange = event => {
+
+  handleInputChange = (event) => {
     event.persist();
     const { name, value } = event.target;
 
-    this.setState((prevState) =>({
+    this.setState(prevState => ({
       [name]: {
         ...prevState[name],
         value,
-      }
+      },
     }));
   };
 
-  handleProfileSubmit = (event) => {
+  handleProfileSubmit = () => {
     const { username, firstName, lastName } = this.state;
 
     this.props.editProfile({
@@ -86,41 +82,43 @@ class ChatUserMenu extends React.Component {
     this.handleClose();
   };
 
-  render() {    
-   const { classes, disabled } = this.props;
-   const { anchorEl, openModal, username, firstName, lastName } = this.state;
-   const open = Boolean(anchorEl);
-   const openm = Boolean(openModal);
+  render() {
+    const { classes, disabled } = this.props;
+    const {
+      anchorEl, openModal, username, firstName, lastName,
+    } = this.state;
+    const open = Boolean(anchorEl);
+    const openm = Boolean(openModal);
 
-   return (
-    <React.Fragment>
-      <IconButton
-        aria-owns={open ? 'menu-appbar' : null}
-        aria-haspopup="true"
-        onClick={this.handleMenu}
-        color="inherit"
-        disabled={disabled}
-      >
-        <AccountCircle />
-      </IconButton>
-      <Menu
-        id="menu-appbar"
-        anchorEl={anchorEl}
-        anchorOrigin={{
+    return (
+      <React.Fragment>
+        <IconButton
+          aria-owns={open ? 'menu-appbar' : null}
+          aria-haspopup="true"
+          onClick={this.handleMenu}
+          color="inherit"
+          disabled={disabled}
+        >
+          <AccountCircle />
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          anchorOrigin={{
           vertical: 'top',
           horizontal: 'right',
         }}
-        transformOrigin={{
+          transformOrigin={{
           vertical: 'top',
           horizontal: 'right',
         }}
-        open={open}
-        onClose={this.handleClose}
-      >
-        <MenuItem onClick={this.handleOpen}>Profile</MenuItem>
-        <MenuItem onClick={this.handleLogoutClick}>Logout</MenuItem>
-      </Menu>
-      <Dialog open={openm} onClose={this.handleModalClose}>
+          open={open}
+          onClose={this.handleClose}
+        >
+          <MenuItem onClick={this.handleOpen}>Profile</MenuItem>
+          <MenuItem onClick={this.handleLogoutClick}>Logout</MenuItem>
+        </Menu>
+        <Dialog open={openm} onClose={this.handleModalClose}>
           <DialogTitle>Edit your profile</DialogTitle>
           <DialogContent className={classes.modalNewChat}>
             <TextField
@@ -172,7 +170,7 @@ class ChatUserMenu extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-    </React.Fragment>
+      </React.Fragment>
     );
   }
 }

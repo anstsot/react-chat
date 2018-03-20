@@ -9,7 +9,7 @@ const styles = theme => ({
     left: 'auto',
     right: 0,
     bottom: 0,
-    width: `calc(100% - 320px)`,
+    width: 'calc(100% - 320px)',
     padding: theme.spacing.unit * 3,
     backgroundColor: 'rgba(63, 81, 181, 0.2)',
     boxSizing: 'border-box',
@@ -45,9 +45,9 @@ class MessageInput extends React.Component {
     return (
       <div className={classes.MessageInputDiv}>
         <Paper className={classes.MessageInput} elevation={6}>
-          <Input 
+          <Input
             disabled={disabled}
-            fullWidth 
+            fullWidth
             placeholder="Type your message…"
             value={this.state.value}
             onChange={this.handleMessageChange}

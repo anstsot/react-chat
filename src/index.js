@@ -12,8 +12,8 @@ const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>, 
-  rootEl
+  </Provider>,
+  rootEl,
 );
 
 if (module.hot) {
@@ -21,8 +21,8 @@ if (module.hot) {
     ReactDOM.render(
       <Provider store={store}>
         <App />
-      </Provider>, 
-      rootEl
+      </Provider>,
+      rootEl,
     );
   });
 }

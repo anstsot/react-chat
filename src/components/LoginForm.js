@@ -9,7 +9,7 @@ const styles = theme => ({
   },
   button: {
     marginTop: theme.spacing.unit * 2,
-  }
+  },
 });
 
 class LoginForm extends React.Component {
@@ -24,15 +24,15 @@ class LoginForm extends React.Component {
     },
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     event.persist();
     const { name, value } = event.target;
 
-    this.setState((prevState) =>({
+    this.setState(prevState => ({
       [name]: {
         ...prevState[name],
         value,
-      }
+      },
     }));
   };
 
@@ -40,12 +40,10 @@ class LoginForm extends React.Component {
     event.preventDefault();
     const { username, password } = this.state;
 
-    console.log('Login: ', username.value, password.value);
-
     this.props.onSubmit(username.value, password.value);
   }
 
-  render () {
+  render() {
     const { classes } = this.props;
     const { username, password } = this.state;
 
@@ -73,24 +71,24 @@ class LoginForm extends React.Component {
           value={password.value}
           name="password"
           onChange={this.handleInputChange}
-          autoComplete = "password"
+          autoComplete="password"
           margin="normal"
           error={!password.isValid}
           fullWidth
           required
         />
-        <Button 
-          fullWidth 
-          variant="raised" 
-          type="submit" 
-          color="primary" 
+        <Button
+          fullWidth
+          variant="raised"
+          type="submit"
+          color="primary"
           className={classes.button}
         >
           Login
         </Button>
       </form>
     );
-  };
+  }
 }
 
 export default withStyles(styles)(LoginForm);

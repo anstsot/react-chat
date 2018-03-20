@@ -9,46 +9,46 @@ class ErrorMessage extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if ( nextProps.error ) {
+    if (nextProps.error) {
       this.setState({ open: true });
     }
   }
 
-  handleCloseMessage = (event, reason) => {
+  handleCloseMessage = () => {
     this.setState({ open: false });
   };
 
   render() {
     const { error } = this.props;
 
-    if ( !error ) {
+    if (!error) {
       return null;
     }
 
     return (
-        <Snackbar
-          anchorOrigin={{
+      <Snackbar
+        anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'left',
           }}
-          open={this.state.open}
-          autoHideDuration={6000}
-          onClose={this.handleCloseMessage}
-          SnackbarContentProps={{
+        open={this.state.open}
+        autoHideDuration={6000}
+        onClose={this.handleCloseMessage}
+        SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={<span id="message-id">{error.message}</span>}
-          action={[
-            <IconButton
-              key="close"
-              aria-label="Close"
-              color="inherit"
-              onClick={this.handleCloseMessage}
-            >
-              <CloseIcon />
-            </IconButton>,
+        message={<span id="message-id">{error.message}</span>}
+        action={[
+          <IconButton
+            key="close"
+            aria-label="Close"
+            color="inherit"
+            onClick={this.handleCloseMessage}
+          >
+            <CloseIcon />
+          </IconButton>,
           ]}
-        />
+      />
     );
   }
 }

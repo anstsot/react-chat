@@ -9,7 +9,7 @@ const styles = theme => ({
     left: 'auto',
     right: 0,
     bottom: 0,
-    width: `calc(100% - 320px)`,
+    width: 'calc(100% - 320px)',
     padding: theme.spacing.unit * 3,
     backgroundColor: 'rgba(63, 81, 181, 0.2)',
     boxSizing: 'border-box',
@@ -19,18 +19,12 @@ const styles = theme => ({
   },
 });
 
-class MessageInput extends React.Component {
-  render() {
-    const { classes, joinChatClick, disabled } = this.props;
-    
-    return (
-      <div className={classes.MessageInputDiv}>
-        <Paper className={classes.MessageInput} elevation={6}>
-          <Button disabled={disabled} variant="raised" color="primary" fullWidth onClick={joinChatClick}>Join</Button>
-        </Paper>
-      </div>
-    );
-  }
-}
+const MessageInput = ({ classes, joinChatClick, disabled }) => (
+  <div className={classes.MessageInputDiv}>
+    <Paper className={classes.MessageInput} elevation={6}>
+      <Button disabled={disabled} variant="raised" color="primary" fullWidth onClick={joinChatClick}>Join</Button>
+    </Paper>
+  </div>
+);
 
 export default withStyles(styles)(MessageInput);

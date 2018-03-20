@@ -6,7 +6,7 @@ export function missingSocketConnection() {
   return {
     type: types.SOCKETS_CONNECTION_MISSING,
     payload: new Error('Missing connection!'),
-  }
+  };
 }
 
 let socket = null;
@@ -17,7 +17,7 @@ export function socketConnect() {
     const { token } = state.auth;
     const { isFetching } = state.services;
 
-    if ( isFetching.sockets ) {
+    if (isFetching.sockets) {
       return Promise.resolve();
     }
 
@@ -56,14 +56,14 @@ export function socketConnect() {
       });
     });
 
-    socket.on('new-chat', ({chat}) => {
+    socket.on('new-chat', ({ chat }) => {
       dispatch({
         type: types.RECIEVE_NEW_CHAT,
         payload: chat,
       });
     });
 
-    socket.on('deleted-chat', ({chat}) => {
+    socket.on('deleted-chat', ({ chat }) => {
       const { activeChat } = getState().chat;
 
       dispatch({
@@ -71,11 +71,11 @@ export function socketConnect() {
         payload: chat,
       });
 
-      if ( activeChat._id === chat._id ) {
+      if (activeChat._id === chat._id) {
         dispatch(redirect('/chat'));
       }
     });
-  }
+  };
 }
 
 export function sendMessage(content) {
@@ -95,9 +95,9 @@ export function sendMessage(content) {
           chatId: activeChat._id,
           content,
         },
-      })
+      });
     });
-  }
+  };
 }
 
 export function mountChat(chatId) {
@@ -109,9 +109,9 @@ export function mountChat(chatId) {
     socket.emit('mount-chat', chatId);
     dispatch({
       type: types.MOUNT_CHAT,
-      payload: {chatId},
-    })
-  }
+      payload: { chatId },
+    });
+  };
 }
 
 export function unmountChat(chatId) {
@@ -123,7 +123,7 @@ export function unmountChat(chatId) {
     socket.emit('unmount-chat', chatId);
     dispatch({
       type: types.UNMOUNT_CHAT,
-      payload: {chatId},
-    })
-  }
+      payload: { chatId },
+    });
+  };
 }

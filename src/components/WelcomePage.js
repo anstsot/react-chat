@@ -21,7 +21,7 @@ const styles = theme => ({
   formWrapper: {
     width: '100%',
     height: '100%',
-    minHeight: `calc(100vh - 64px)`,
+    minHeight: 'calc(100vh - 64px)',
     marginTop: '64px',
     display: 'block',
     backgroundColor: '#d6e9f7',
@@ -32,7 +32,7 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
     backgroundColor: theme.palette.background.paper,
-  }
+  },
 });
 
 class WelcomePage extends React.Component {
@@ -44,8 +44,10 @@ class WelcomePage extends React.Component {
     this.setState({ value });
   };
 
-  render () {
-    const { classes, signup, login, isAuthenticated, error } = this.props;
+  render() {
+    const {
+      classes, signup, login, isAuthenticated, error,
+    } = this.props;
     const { value } = this.state;
 
     if (isAuthenticated) {
@@ -63,22 +65,22 @@ class WelcomePage extends React.Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <div className={ classes.formWrapper }>
-          <Paper className={ classes.divPaper } elevation={6}>
+        <div className={classes.formWrapper}>
+          <Paper className={classes.divPaper} elevation={6}>
             <AppBar position="static">
               <Tabs value={value} onChange={this.handleChange} fullWidth>
                 <Tab label="Login" />
                 <Tab label="Sign Up" />
               </Tabs>
             </AppBar>
-            {value === 0 && <LoginForm onSubmit={login}/>}
-            {value === 1 && <SignUpForm onSubmit={signup}/>}
+            {value === 0 && <LoginForm onSubmit={login} />}
+            {value === 1 && <SignUpForm onSubmit={signup} />}
           </Paper>
         </div>
-        <ErrorMessage error={error}/>
+        <ErrorMessage error={error} />
       </div>
     );
-  };
+  }
 }
 
 export default withStyles(styles)(WelcomePage);

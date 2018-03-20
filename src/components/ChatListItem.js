@@ -5,20 +5,20 @@ import { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from './Avatar';
 import dateFormat from '../utils/date-format';
 
-const styles = theme => ({
+const styles = () => ({
   activeChat: {
     background: '#d6e9f7',
-  }
+  },
 });
 
-const ChatListItem = ({ classes, _id, title, updatedAt, activeChat, disabled }) => {
-  return (
-    <ListItem disabled={disabled} button component={Link} to={ `/chat/${_id}` } className={activeChat===_id && classes.activeChat}>
-      <Avatar colorFrom={title}>{title}</Avatar>
-      <ListItemText primary={title} secondary={dateFormat(updatedAt)} />
-    </ListItem>
-  );
-}
+const ChatListItem = ({
+  classes, _id, title, updatedAt, activeChat, disabled,
+}) => (
+  <ListItem disabled={disabled} button component={Link} to={`/chat/${_id}`} className={activeChat === _id && classes.activeChat}>
+    <Avatar colorFrom={title}>{title}</Avatar>
+    <ListItemText primary={title} secondary={dateFormat(updatedAt)} />
+  </ListItem>
+);
 
 export default withStyles(styles)(ChatListItem);
 

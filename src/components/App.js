@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-const App = (classes) => (
+const App = classes => (
   <Router history={history}>
     <div className={classes.root}>
       <Switch>

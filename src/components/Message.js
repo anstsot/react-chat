@@ -29,35 +29,38 @@ const styles = theme => ({
   },
   messageFromMe: {
     marginRight: theme.spacing.unit * 2,
-    backgroundColor: '#e6dcff'
+    backgroundColor: '#e6dcff',
   },
 });
 
-const Message = ({ classes, sender, content, userId, statusMessage, createdAt }) => {
+const Message = ({
+  classes, sender, content, userId, statusMessage, createdAt,
+}) => {
+  // eslint-disable-next-line
   const isMessageFromMe = sender._id === userId;
-  const userName = (sender.firstName && sender.lastName) ? sender.firstName + ' ' + sender.lastName : sender.username;
+  const userName = (sender.firstName && sender.lastName) ? `${sender.firstName} ${sender.lastName}` : sender.username;
   const colorMessage = getColor(userName);
 
-  const UserAvatar =  (
+  const UserAvatar = (
     <Avatar colorFrom={userName}>{userName}</Avatar>
   );
 
   if (statusMessage) {
     return (
-      <div className={ classnames(classes.MessageDiv, classes.messageDivJoined) }>
-      <Typography variant="body1">
-        <span style={{color: colorMessage}}>{userName}</span>{content}
-      </Typography>
-      <Typography variant="caption">{dateFormat(createdAt)}</Typography>
+      <div className={classnames(classes.MessageDiv, classes.messageDivJoined)}>
+        <Typography variant="body1">
+          <span style={{ color: colorMessage }}>{userName}</span>{content}
+        </Typography>
+        <Typography variant="caption">{dateFormat(createdAt)}</Typography>
       </div>
     );
   }
 
   return (
-    <div className={ classnames(classes.MessageDiv, isMessageFromMe && classes.messageDivFromMe) }>
+    <div className={classnames(classes.MessageDiv, isMessageFromMe && classes.messageDivFromMe)}>
       {!isMessageFromMe && UserAvatar}
-      <Paper className={ classnames(classes.Message, isMessageFromMe && classes.messageFromMe) }>
-        <Typography variant="caption" style={{color: colorMessage}}>
+      <Paper className={classnames(classes.Message, isMessageFromMe && classes.messageFromMe)}>
+        <Typography variant="caption" style={{ color: colorMessage }}>
           {userName}
         </Typography>
         <Typography variant="body1">{content}</Typography>
@@ -65,7 +68,7 @@ const Message = ({ classes, sender, content, userId, statusMessage, createdAt })
       </Paper>
       {isMessageFromMe && UserAvatar}
     </div>
-  )
-}
+  );
+};
 
 export default withStyles(styles)(Message);
