@@ -38,7 +38,7 @@ class SignUpForm extends React.Component {
     });
 
     return isValid;
-  }
+  };
 
   handleInputChange = (event) => {
     event.persist();
@@ -59,7 +59,7 @@ class SignUpForm extends React.Component {
     const { username, password } = this.state;
 
     this.props.onSubmit(username.value, password.value);
-  }
+  };
 
   render() {
     const { classes } = this.props;
@@ -109,7 +109,9 @@ class SignUpForm extends React.Component {
           error={!repeatedPassword.isValid}
           autoComplete="new-password"
         />
-        <Button fullWidth variant="raised" type="submit" color="primary" className={classes.button}>Sign Up</Button>
+        <Button fullWidth variant="raised" type="submit" color="primary" className={classes.button}>
+          Sign Up
+        </Button>
       </form>
     );
   }

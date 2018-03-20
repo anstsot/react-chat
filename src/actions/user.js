@@ -23,9 +23,10 @@ export function editProfile(data) {
           payload: json,
         });
       })
-      .catch(reason => dispatch({
-        type: types.EDIT_PROFILE_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.EDIT_PROFILE_FAILURE,
+          payload: reason,
+        }));
   };
 }

@@ -3,18 +3,14 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import TextField from 'material-ui/TextField';
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from 'material-ui/Dialog';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
 
 const styles = theme => ({
   NewChatButton: {
     position: 'absolute',
     left: 'auto',
     right: theme.spacing.unit * 3,
-    bottom: (theme.spacing.unit * 3) + 48,
+    bottom: theme.spacing.unit * 3 + 48,
   },
   modalNewChat: {
     width: '300px',
@@ -87,10 +83,7 @@ class NewChatButton extends React.Component {
         >
           <AddIcon />
         </Button>
-        <Dialog
-          open={openModal}
-          onClose={this.handleClose}
-        >
+        <Dialog open={openModal} onClose={this.handleClose}>
           <DialogTitle>Create new chat</DialogTitle>
           <DialogContent className={classes.modalNewChat}>
             <TextField

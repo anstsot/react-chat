@@ -38,18 +38,20 @@ const Message = ({
 }) => {
   // eslint-disable-next-line
   const isMessageFromMe = sender._id === userId;
-  const userName = (sender.firstName && sender.lastName) ? `${sender.firstName} ${sender.lastName}` : sender.username;
+  const userName =
+    sender.firstName && sender.lastName
+      ? `${sender.firstName} ${sender.lastName}`
+      : sender.username;
   const colorMessage = getColor(userName);
 
-  const UserAvatar = (
-    <Avatar colorFrom={userName}>{userName}</Avatar>
-  );
+  const UserAvatar = <Avatar colorFrom={userName}>{userName}</Avatar>;
 
   if (statusMessage) {
     return (
       <div className={classnames(classes.MessageDiv, classes.messageDivJoined)}>
         <Typography variant="body1">
-          <span style={{ color: colorMessage }}>{userName}</span>{content}
+          <span style={{ color: colorMessage }}>{userName}</span>
+          {content}
         </Typography>
         <Typography variant="caption">{dateFormat(createdAt)}</Typography>
       </div>

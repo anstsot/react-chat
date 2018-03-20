@@ -19,7 +19,14 @@ const styles = theme => ({
 });
 
 const ChatHeader = ({
-  classes, logout, chatName, user, leaveChatClick, deleteChatClick, editProfile, isConnected,
+  classes,
+  logout,
+  chatName,
+  user,
+  leaveChatClick,
+  deleteChatClick,
+  editProfile,
+  isConnected,
 }) => {
   const title = chatName || 'First React Chat';
 
@@ -29,14 +36,14 @@ const ChatHeader = ({
         {chatName ? <Avatar colorFrom={title}>{title}</Avatar> : null}
         <Typography className={classes.appTypography} variant="title" color="inherit" noWrap>
           {title}
-          {user.isChatMember ?
+          {user.isChatMember ? (
             <ChatMoreMenu
               disabled={!isConnected}
               user={user}
               leaveChatClick={leaveChatClick}
               deleteChatClick={deleteChatClick}
             />
-          : null}
+          ) : null}
         </Typography>
         <ChatUserMenu
           disabled={!isConnected}

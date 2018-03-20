@@ -15,8 +15,10 @@ const ChatList = ({
   classes, chats, activeChat, disabled,
 }) => (
   <List className={classes.ChatsList}>
-    { chats && chats.map((chat, key) =>
-      <ChatListItem disabled={disabled} key={key} activeChat={activeChat} {...chat} />)}
+    {chats &&
+      chats.map((chat, key) => (
+        <ChatListItem disabled={disabled} key={key} activeChat={activeChat} {...chat} />
+      ))}
   </List>
 );
 

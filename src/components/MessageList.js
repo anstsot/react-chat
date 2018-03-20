@@ -33,14 +33,16 @@ class MessageList extends React.Component {
     const { classes, messages, userId } = this.props;
 
     return messages && messages.length ? (
-      <div className={classes.messWrapper} ref={(wrapper) => { this.messagesWrapper = wrapper; }}>
-        {messages.map(message =>
-          <Message key={message._id} userId={userId} {...message} />)}
+      <div
+        className={classes.messWrapper}
+        ref={(wrapper) => {
+          this.messagesWrapper = wrapper;
+        }}
+      >
+        {messages.map(message => <Message key={message._id} userId={userId} {...message} />)}
       </div>
     ) : (
-      <Typography variant="display1">
-        There is no messages yet...
-      </Typography>
+      <Typography variant="display1">There is no messages yet...</Typography>
     );
   }
 }

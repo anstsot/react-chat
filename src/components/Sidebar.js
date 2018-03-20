@@ -30,20 +30,19 @@ class Sidebar extends React.Component {
 
   handleChatsChange = (event, activeChats) => {
     this.setState({ activeChats });
-  }
+  };
 
   handleSearchChange = (event) => {
     this.setState({
       search: event.target.value,
     });
-  }
+  };
 
   filterChats = (chats) => {
     const { search } = this.state;
 
-    return chats.filter(chat =>
-      chat.title.toLowerCase().includes(search.toLowerCase()));
-  }
+    return chats.filter(chat => chat.title.toLowerCase().includes(search.toLowerCase()));
+  };
 
   render() {
     const {

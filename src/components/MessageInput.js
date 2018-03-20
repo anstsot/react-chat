@@ -22,13 +22,13 @@ const styles = theme => ({
 class MessageInput extends React.Component {
   state = {
     value: '',
-  }
+  };
 
   handleMessageChange = (event) => {
     this.setState({
       value: event.target.value,
     });
-  }
+  };
 
   handleKeyPress = (event) => {
     const { value } = this.state;
@@ -37,7 +37,7 @@ class MessageInput extends React.Component {
       this.props.sendMessage(value);
       this.setState({ value: '' });
     }
-  }
+  };
 
   render() {
     const { classes, disabled } = this.props;

@@ -22,7 +22,15 @@ const styles = theme => ({
 const MessageInput = ({ classes, joinChatClick, disabled }) => (
   <div className={classes.MessageInputDiv}>
     <Paper className={classes.MessageInput} elevation={6}>
-      <Button disabled={disabled} variant="raised" color="primary" fullWidth onClick={joinChatClick}>Join</Button>
+      <Button
+        disabled={disabled}
+        variant="raised"
+        color="primary"
+        fullWidth
+        onClick={joinChatClick}
+      >
+        Join
+      </Button>
     </Paper>
   </div>
 );

@@ -5,11 +5,7 @@ import AccountCircle from 'material-ui-icons/AccountCircle';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from 'material-ui/Dialog';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
 
 const styles = () => ({
   menuButton: {
@@ -105,13 +101,13 @@ class ChatUserMenu extends React.Component {
           id="menu-appbar"
           anchorEl={anchorEl}
           anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
+            vertical: 'top',
+            horizontal: 'right',
+          }}
           transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
+            vertical: 'top',
+            horizontal: 'right',
+          }}
           open={open}
           onClose={this.handleClose}
         >

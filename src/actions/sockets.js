@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: 0 */
 import SocketIOClient from 'socket.io-client';
 import * as types from '../constants/sockets';
 import { redirect } from './services';
@@ -12,6 +13,7 @@ export function missingSocketConnection() {
 let socket = null;
 
 export function socketConnect() {
+  /* eslint-disable-next-line */
   return (dispatch, getState) => {
     const state = getState();
     const { token } = state.auth;
@@ -85,23 +87,27 @@ export function sendMessage(content) {
     if (!socket) {
       dispatch(missingSocketConnection());
     }
-    socket.emit('send-message', {
-      chatId: activeChat._id,
-      content,
-    }, () => {
-      dispatch({
-        type: types.SEND_MESSAGE,
-        payload: {
-          chatId: activeChat._id,
-          content,
-        },
-      });
-    });
+    socket.emit(
+      'send-message',
+      {
+        chatId: activeChat._id,
+        content,
+      },
+      () => {
+        dispatch({
+          type: types.SEND_MESSAGE,
+          payload: {
+            chatId: activeChat._id,
+            content,
+          },
+        });
+      },
+    );
   };
 }
 
 export function mountChat(chatId) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     if (!socket) {
       dispatch(missingSocketConnection());
     }
@@ -115,7 +121,7 @@ export function mountChat(chatId) {
 }
 
 export function unmountChat(chatId) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     if (!socket) {
       dispatch(missingSocketConnection());
     }

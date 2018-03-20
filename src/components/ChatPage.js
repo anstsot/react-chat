@@ -11,18 +11,17 @@ class ChatPage extends React.Component {
       setActiveChat, getAllChats, getMyChats, match, socketConnect, mountChat,
     } = this.props;
 
-    Promise.all([
-      getAllChats(),
-      getMyChats(),
-    ]).then(() => {
-      socketConnect();
-    }).then(() => {
-      const { id } = match.params;
-      if (id) {
-        setActiveChat(id);
-        mountChat(id);
-      }
-    });
+    Promise.all([getAllChats(), getMyChats()])
+      .then(() => {
+        socketConnect();
+      })
+      .then(() => {
+        const { id } = match.params;
+        if (id) {
+          setActiveChat(id);
+          mountChat(id);
+        }
+      });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,26 +39,34 @@ class ChatPage extends React.Component {
   leaveChatClick = () => {
     const { activeChat, leaveChat } = this.props;
     leaveChat(activeChat._id);
-  }
+  };
 
   joinChatClick = () => {
     const { activeChat, joinChat } = this.props;
     joinChat(activeChat._id);
-  }
+  };
 
   deleteChatClick = () => {
     const { activeChat, deleteChat } = this.props;
     deleteChat(activeChat._id);
-  }
+  };
 
   deleteChatClick = () => {
     const { activeChat, deleteChat } = this.props;
     deleteChat(activeChat._id);
-  }
+  };
 
   render() {
     const {
-      logout, chats, activeChat, user, addNewChat, sendMessage, editProfile, error, isConnected,
+      logout,
+      chats,
+      activeChat,
+      user,
+      addNewChat,
+      sendMessage,
+      editProfile,
+      error,
+      isConnected,
     } = this.props;
 
     return (

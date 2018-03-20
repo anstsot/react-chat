@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
     const { username, password } = this.state;
 
     this.props.onSubmit(username.value, password.value);
-  }
+  };
 
   render() {
     const { classes } = this.props;
@@ -77,13 +77,7 @@ class LoginForm extends React.Component {
           fullWidth
           required
         />
-        <Button
-          fullWidth
-          variant="raised"
-          type="submit"
-          color="primary"
-          className={classes.button}
-        >
+        <Button fullWidth variant="raised" type="submit" color="primary" className={classes.button}>
           Login
         </Button>
       </form>

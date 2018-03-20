@@ -28,15 +28,15 @@ class ErrorMessage extends React.Component {
     return (
       <Snackbar
         anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
         open={this.state.open}
         autoHideDuration={6000}
         onClose={this.handleCloseMessage}
         SnackbarContentProps={{
-            'aria-describedby': 'message-id',
-          }}
+          'aria-describedby': 'message-id',
+        }}
         message={<span id="message-id">{error.message}</span>}
         action={[
           <IconButton
@@ -47,7 +47,7 @@ class ErrorMessage extends React.Component {
           >
             <CloseIcon />
           </IconButton>,
-          ]}
+        ]}
       />
     );
   }

@@ -38,21 +38,21 @@ class ChatMoreMenu extends React.Component {
           id="menu-appbar"
           anchorEl={anchorEl}
           anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
+            vertical: 'top',
+            horizontal: 'right',
+          }}
           transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
+            vertical: 'top',
+            horizontal: 'right',
+          }}
           open={open}
           onClose={this.handleClose}
         >
-          {
-        user.isMember ?
-          <MenuItem onClick={leaveChatClick}>Leave chat</MenuItem> :
-          <MenuItem onClick={deleteChatClick}>Delete chat</MenuItem>
-      }
+          {user.isMember ? (
+            <MenuItem onClick={leaveChatClick}>Leave chat</MenuItem>
+          ) : (
+            <MenuItem onClick={deleteChatClick}>Delete chat</MenuItem>
+          )}
         </Menu>
       </React.Fragment>
     );

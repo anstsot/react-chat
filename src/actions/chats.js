@@ -23,10 +23,11 @@ export function getMyChats() {
           payload: json,
         });
       })
-      .catch(reason => dispatch({
-        type: types.MY_CHATS_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.MY_CHATS_FAILURE,
+          payload: reason,
+        }));
   };
 }
 
@@ -51,10 +52,11 @@ export function getAllChats() {
           payload: json,
         });
       })
-      .catch(reason => dispatch({
-        type: types.CHATS_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.CHATS_FAILURE,
+          payload: reason,
+        }));
   };
 }
 
@@ -80,16 +82,17 @@ export function getActiveChat(chatId) {
         });
         return json;
       })
-      .catch(reason => dispatch({
-        type: types.GET_ACTIVE_CHAT_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.GET_ACTIVE_CHAT_FAILURE,
+          payload: reason,
+        }));
   };
 }
 
 export function setActiveChat(chatId) {
-  return dispatch => dispatch(getActiveChat(chatId))
-    .then((data) => {
+  return dispatch =>
+    dispatch(getActiveChat(chatId)).then((data) => {
       if (!data) {
         dispatch({
           type: types.UNSET_ACTIVE_CHAT,
@@ -123,10 +126,11 @@ export function addNewChat(title) {
           payload: json,
         });
       })
-      .catch(reason => dispatch({
-        type: types.ADD_NEW_CHAT_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.ADD_NEW_CHAT_FAILURE,
+          payload: reason,
+        }));
   };
 }
 
@@ -151,10 +155,11 @@ export function joinChat(chatId) {
           payload: json,
         });
       })
-      .catch(reason => dispatch({
-        type: types.JOIN_CHAT_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.JOIN_CHAT_FAILURE,
+          payload: reason,
+        }));
   };
 }
 
@@ -181,10 +186,11 @@ export function leaveChat(chatId) {
         dispatch(setActiveChat(chatId));
         return json.chat;
       })
-      .catch(reason => dispatch({
-        type: types.LEAVE_CHAT_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.LEAVE_CHAT_FAILURE,
+          payload: reason,
+        }));
   };
 }
 
@@ -210,9 +216,10 @@ export function deleteChat(chatId) {
         });
         dispatch(redirect('/chat'));
       })
-      .catch(reason => dispatch({
-        type: types.DELETE_CHAT_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.DELETE_CHAT_FAILURE,
+          payload: reason,
+        }));
   };
 }

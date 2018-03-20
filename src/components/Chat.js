@@ -28,23 +28,32 @@ const styles = theme => ({
 });
 
 const Chat = ({
-  classes, messages, user, joinChatClick, activeChat, sendMessage, isConnected,
+  classes, messages, user, joinChatClick, activeChat, sendMessage, isConnected, 
 }) => (
   <main className={classes.contentChat}>
-    { activeChat ?
+    {activeChat ? (
       // eslint-disable-next-line
       <MessageList messages={messages} userId={user._id} />
-      : <Paper className={classes.startPaper} elevation={4}>
-        <Typography variant="headline" component="h3">Start messaging...</Typography>
-        <Typography component="p">Use <b>Global</b> to explore communities around here.</Typography>
-        <Typography component="p">Use <b>Recents</b> to see your recent conversations.</Typography>
-        </Paper>
-    }
-    { activeChat ?
-      user.isChatMember ? 
+    ) : (
+      <Paper className={classes.startPaper} elevation={4}>
+        <Typography variant="headline" component="h3">
+          Start messaging...
+        </Typography>
+        <Typography component="p">
+          Use <b>Global</b> to explore communities around here.
+        </Typography>
+        <Typography component="p">
+          Use <b>Recents</b> to see your recent conversations.
+        </Typography>
+      </Paper>
+    )}
+    {activeChat ? (
+      user.isChatMember ? (
         <MessageInput disabled={!isConnected} sendMessage={content => sendMessage(content)} />
-        : <ChatJoin disabled={!isConnected} joinChatClick={joinChatClick} /> 
-      : null }
+      ) : (
+        <ChatJoin disabled={!isConnected} joinChatClick={joinChatClick} />
+      )
+    ) : null}
   </main>
 );
 
