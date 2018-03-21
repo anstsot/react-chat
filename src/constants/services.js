@@ -1,2 +1,2 @@
-/* eslint-disable-next-line */
-export const REDIRECT = Symbol('REDIRECT');
+// eslint-disable-next-line
+export const REDIRECT = Symbol('services/REDIRECT');

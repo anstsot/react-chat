@@ -1,4 +1,5 @@
 /* eslint no-underscore-dangle: 0 */
+/* eslint consistent-return: 0 */
 import SocketIOClient from 'socket.io-client';
 import * as types from '../constants/sockets';
 import { redirect } from './services';
@@ -13,7 +14,6 @@ export function missingSocketConnection() {
 let socket = null;
 
 export function socketConnect() {
-  /* eslint-disable-next-line */
   return (dispatch, getState) => {
     const state = getState();
     const { token } = state.auth;
@@ -66,7 +66,7 @@ export function socketConnect() {
     });
 
     socket.on('deleted-chat', ({ chat }) => {
-      const { activeChat } = getState().chat;
+      const { activeChat } = getState().chats;
 
       dispatch({
         type: types.RECIEVE_DELETED_CHAT,
@@ -82,7 +82,7 @@ export function socketConnect() {
 
 export function sendMessage(content) {
   return (dispatch, getState) => {
-    const { activeChat } = getState().chat;
+    const { activeChat } = getState().chats;
 
     if (!socket) {
       dispatch(missingSocketConnection());

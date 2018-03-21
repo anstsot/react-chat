@@ -1,5 +1,5 @@
+import * as types from '../constants/services';
 import history from '../utils/history';
-import * as types from '../constants';
 
 // eslint-disable-next-line
 export function redirect(to) {
