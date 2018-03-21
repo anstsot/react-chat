@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
         my: chatFunctions.getChatsByIds(state.chats, state.chats.myChats), 
         all: chatFunctions.getChatsByIds(state.chats, state.chats.allChats), 
     },
-    activeChat: state.chats.activeChat,
+    activeChat: { ...state.chats.activeChat, messages: state.messages },
     user: {
         ...state.auth.user,
         isMember: chatFunctions.isMember(state.auth.user._id, state.chats.activeChat),

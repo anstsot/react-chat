@@ -64,7 +64,7 @@ export function socketConnect() {
     });
 
     socket.on('deleted-chat', ({chat}) => {
-      const { activeChat } = getState().chat;
+      const { activeChat } = getState().chats;
 
       dispatch({
         type: types.RECIEVE_DELETED_CHAT,
@@ -80,7 +80,7 @@ export function socketConnect() {
 
 export function sendMessage(content) {
   return (dispatch, getState) => {
-    const { activeChat } = getState().chat;
+    const { activeChat } = getState().chats;
 
     if (!socket) {
       dispatch(missingSocketConnection());
