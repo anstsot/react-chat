@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import Input from 'material-ui/Input';
+import Button from 'material-ui/Button';
 
 const styles = theme => ({
   MessageInputDiv: {
@@ -20,39 +20,13 @@ const styles = theme => ({
 });
 
 class MessageInput extends React.Component {
-  state = {
-    value: '',
-  }
-
-  handleMessageChange = (event) => {
-    this.setState({
-      value: event.target.value,
-    });
-  }
-
-  handleKeyPress = (event) => {
-    const { value } = this.state;
-
-    if (event.key === 'Enter' && value) {
-      this.props.sendMessage(value);
-      this.setState({ value: '' });
-    }
-  }
-
   render() {
-    const { classes, disabled } = this.props;
-
+    const { classes, joinChatClick, disabled } = this.props;
+    
     return (
       <div className={classes.MessageInputDiv}>
         <Paper className={classes.MessageInput} elevation={6}>
-          <Input 
-            disabled={disabled}
-            fullWidth 
-            placeholder="Type your message…"
-            value={this.state.value}
-            onChange={this.handleMessageChange}
-            onKeyPress={this.handleKeyPress}
-          />
+          <Button disabled={disabled} variant="raised" color="primary" fullWidth onClick={joinChatClick}>Join</Button>
         </Paper>
       </div>
     );
