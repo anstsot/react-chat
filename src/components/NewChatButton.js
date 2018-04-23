@@ -1,3 +1,4 @@
+/* eslint no-mixed-operators: 0 */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
@@ -11,7 +12,6 @@ const styles = theme => ({
     position: 'absolute',
     left: 'auto',
     right: theme.spacing.unit * 3,
-    //eslint-disable-next-line
     bottom: theme.spacing.unit * 3 + 48,
   },
   modalNewChat: {
