@@ -1,9 +1,21 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
 class ChatMoreMenu extends React.Component {
+  static propTypes = {
+    user: PropTypes.shape({
+      isMember: PropTypes.bool.isRequired,
+      isCreator: PropTypes.bool.isRequired,
+      isChatMember: PropTypes.bool.isRequired,
+    }).isRequired,
+    disabled: PropTypes.bool.isRequired,
+    leaveChatClick: PropTypes.func.isRequired,
+    deleteChatClick: PropTypes.func.isRequired,
+  };
+
   state = {
     anchorEl: null,
   };

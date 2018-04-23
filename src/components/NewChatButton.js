@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -18,6 +19,12 @@ const styles = theme => ({
 });
 
 class NewChatButton extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    addNewChatClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+  };
+
   state = {
     openModal: false,
     title: {

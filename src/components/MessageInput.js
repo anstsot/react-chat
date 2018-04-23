@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -20,6 +21,12 @@ const styles = theme => ({
 });
 
 class MessageInput extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    disabled: PropTypes.bool.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+  };
+
   state = {
     value: '',
   };

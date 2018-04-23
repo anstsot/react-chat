@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
@@ -71,6 +72,24 @@ const Message = ({
       {isMessageFromMe && UserAvatar}
     </div>
   );
+};
+
+Message.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  content: PropTypes.string.isRequired,
+  sender: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    username: PropTypes.string,
+  }).isRequired,
+  userId: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  statusMessage: PropTypes.bool,
+};
+
+Message.defaultProps = {
+  statusMessage: false,
 };
 
 export default withStyles(styles)(Message);

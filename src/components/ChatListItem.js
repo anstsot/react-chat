@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import { Link } from 'react-router-dom';
@@ -25,5 +26,14 @@ const ChatListItem = ({
     <ListItemText primary={title} secondary={dateFormat(updatedAt)} />
   </ListItem>
 );
+
+ChatListItem.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  disabled: PropTypes.bool.isRequired,
+  _id: PropTypes.string.isRequired,
+  activeChat: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  updatedAt: PropTypes.string.isRequired,
+};
 
 export default withStyles(styles)(ChatListItem);

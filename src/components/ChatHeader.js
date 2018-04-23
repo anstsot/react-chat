@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
@@ -54,6 +55,25 @@ const ChatHeader = ({
       </Toolbar>
     </AppBar>
   );
+};
+
+ChatHeader.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  user: PropTypes.shape({
+    isMember: PropTypes.bool.isRequired,
+    isCreator: PropTypes.bool.isRequired,
+    isChatMember: PropTypes.bool.isRequired,
+  }).isRequired,
+  chatName: PropTypes.string,
+  logout: PropTypes.func.isRequired,
+  leaveChatClick: PropTypes.func.isRequired,
+  deleteChatClick: PropTypes.func.isRequired,
+  editProfile: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
+};
+
+ChatHeader.defaultProps = {
+  chatName: null,
 };
 
 export default withStyles(styles)(ChatHeader);

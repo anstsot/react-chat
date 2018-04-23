@@ -1,4 +1,5 @@
 /* eslint no-underscore-dangle: 0 */
+import PropTypes from 'prop-types';
 import React from 'react';
 import Sidebar from './Sidebar';
 import ChatHeader from './ChatHeader';
@@ -6,6 +7,43 @@ import Chat from './Chat';
 import ErrorMessage from './ErrorMessage';
 
 class ChatPage extends React.Component {
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.object.isRequired,
+    }).isRequired,
+    chats: PropTypes.shape({
+      my: PropTypes.array.isRequired,
+      all: PropTypes.array.isRequired,
+    }).isRequired,
+    user: PropTypes.shape({
+      my: PropTypes.array.isRequired,
+      all: PropTypes.array.isRequired,
+    }).isRequired,
+    activeChat: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+    }),
+    error: PropTypes.instanceOf(Error),
+    setActiveChat: PropTypes.func.isRequired,
+    getAllChats: PropTypes.func.isRequired,
+    getMyChats: PropTypes.func.isRequired,
+    socketConnect: PropTypes.func.isRequired,
+    mountChat: PropTypes.func.isRequired,
+    unmountChat: PropTypes.func.isRequired,
+    leaveChat: PropTypes.func.isRequired,
+    joinChat: PropTypes.func.isRequired,
+    deleteChat: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+    addNewChat: PropTypes.func.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+    editProfile: PropTypes.func.isRequired,
+    isConnected: PropTypes.bool.isRequired,
+  };
+
+  static defaultProps = {
+    activeChat: null,
+    error: null,
+  };
+
   componentDidMount() {
     const {
       setActiveChat, getAllChats, getMyChats, match, socketConnect, mountChat,

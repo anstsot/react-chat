@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -34,5 +35,11 @@ const MessageInput = ({ classes, joinChatClick, disabled }) => (
     </Paper>
   </div>
 );
+
+MessageInput.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  joinChatClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+};
 
 export default withStyles(styles)(MessageInput);
