@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Avatar /> renders correctly 1`] = `
+<div
+  className="MuiAvatar-root-4 MuiAvatar-colorDefault-5"
+  style={
+    Object {
+      "backgroundColor": "#ffc107",
+    }
+  }
+>
+  NS
+</div>
+`;
+
+exports[`<M /> renders correctly 1`] = `
+<div
+  className="MuiAvatar-root-4 MuiAvatar-colorDefault-5"
+  style={
+    Object {
+      "backgroundColor": "#ffc107",
+    }
+  }
+>
+  NS
+</div>
+`;
+
+exports[`<MessageInput /> renders button 1`] = `
+<div
+  className="MessageInput-MessageInputDiv-45"
+>
+  <div
+    className="MuiPaper-root-47 MuiPaper-shadow6-55 MuiPaper-rounded-48 MessageInput-MessageInput-46"
+  >
+    <div
+      className="MuiInput-root-74 MuiInput-fullWidth-82 MuiInput-inkbar-76 MuiInput-underline-80"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyPress={[Function]}
+    >
+      <input
+        aria-invalid={undefined}
+        aria-required={undefined}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-83"
+        defaultValue={undefined}
+        disabled={false}
+        id={undefined}
+        name={undefined}
+        onChange={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your message…"
+        readOnly={undefined}
+        required={undefined}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageInput /> renders correctly 1`] = `
+<div
+  className="MessageInput-MessageInputDiv-45"
+>
+  <div
+    className="MuiPaper-root-47 MuiPaper-shadow6-55 MuiPaper-rounded-48 MessageInput-MessageInput-46"
+  >
+    <div
+      className="MuiInput-root-74 MuiInput-fullWidth-82 MuiInput-inkbar-76 MuiInput-underline-80"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyPress={[Function]}
+    >
+      <input
+        aria-invalid={undefined}
+        aria-required={undefined}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-83"
+        defaultValue={undefined}
+        disabled={undefined}
+        id={undefined}
+        name={undefined}
+        onChange={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your message…"
+        readOnly={undefined}
+        required={undefined}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageInput /> renders disabled button 1`] = `
+<div
+  className="MessageInput-MessageInputDiv-45"
+>
+  <div
+    className="MuiPaper-root-47 MuiPaper-shadow6-55 MuiPaper-rounded-48 MessageInput-MessageInput-46"
+  >
+    <div
+      className="MuiInput-root-74 MuiInput-disabled-79 MuiInput-fullWidth-82 MuiInput-inkbar-76 MuiInput-underline-80"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyPress={[Function]}
+    >
+      <input
+        aria-invalid={undefined}
+        aria-required={undefined}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-83 MuiInput-inputDisabled-85"
+        defaultValue={undefined}
+        disabled={true}
+        id={undefined}
+        name={undefined}
+        onChange={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your message…"
+        readOnly={undefined}
+        required={undefined}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageInput /> renders disabled input 1`] = `
+<div
+  className="MessageInput-MessageInputDiv-45"
+>
+  <div
+    className="MuiPaper-root-47 MuiPaper-shadow6-55 MuiPaper-rounded-48 MessageInput-MessageInput-46"
+  >
+    <div
+      className="MuiInput-root-74 MuiInput-disabled-79 MuiInput-fullWidth-82 MuiInput-inkbar-76 MuiInput-underline-80"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyPress={[Function]}
+    >
+      <input
+        aria-invalid={undefined}
+        aria-required={undefined}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-83 MuiInput-inputDisabled-85"
+        defaultValue={undefined}
+        disabled={true}
+        id={undefined}
+        name={undefined}
+        onChange={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your message…"
+        readOnly={undefined}
+        required={undefined}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageInput /> renders input 1`] = `
+<div
+  className="MessageInput-MessageInputDiv-45"
+>
+  <div
+    className="MuiPaper-root-47 MuiPaper-shadow6-55 MuiPaper-rounded-48 MessageInput-MessageInput-46"
+  >
+    <div
+      className="MuiInput-root-74 MuiInput-fullWidth-82 MuiInput-inkbar-76 MuiInput-underline-80"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyPress={[Function]}
+    >
+      <input
+        aria-invalid={undefined}
+        aria-required={undefined}
+        autoComplete={undefined}
+        autoFocus={undefined}
+        className="MuiInput-input-83"
+        defaultValue={undefined}
+        disabled={false}
+        id={undefined}
+        name={undefined}
+        onChange={[Function]}
+        onKeyDown={undefined}
+        onKeyUp={undefined}
+        placeholder="Type your message…"
+        readOnly={undefined}
+        required={undefined}
+        rows={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;

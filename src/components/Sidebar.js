@@ -1,13 +1,13 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
-import ChatList from './ChatList';
-
-import RestoreIcon from 'material-ui-icons/Restore';
 import ExploreIcon from 'material-ui-icons/Explore';
+import RestoreIcon from 'material-ui-icons/Restore';
+import ChatList from './ChatList';
 import NewChatButton from './NewChatButton';
 
 const styles = theme => ({
@@ -23,21 +23,76 @@ const styles = theme => ({
   },
 });
 
-const Sidebar = ({ classes, chats }) => {
-  return (
-    <Drawer variant="permanent" classes={{ paper: classes.drawerPaper,}}>
-      <div className={classes.drawerHeader}>
-        <TextField fullWidth placeholder="Search chats..." margin="normal"/>
-      </div>
-      <Divider />
-      <ChatList chats={ chats } />
-      <NewChatButton />
-      <BottomNavigation showLabels>
-        <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
-      </BottomNavigation>
-    </Drawer>
-  )
-};
+class Sidebar extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    chats: PropTypes.shape({
+      my: PropTypes.array.isRequired,
+      all: PropTypes.array.isRequired,
+    }).isRequired,
+    activeChat: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+    }),
+    addNewChat: PropTypes.func.isRequired,
+    isConnected: PropTypes.bool.isRequired,
+  };
+
+  static defaultProps = {
+    activeChat: null,
+  };
+
+  state = {
+    activeChats: 0,
+    search: '',
+  };
+
+  handleChatsChange = (event, activeChats) => {
+    this.setState({ activeChats });
+  };
+
+  handleSearchChange = (event) => {
+    this.setState({
+      search: event.target.value,
+    });
+  };
+
+  filterChats = (chats) => {
+    const { search } = this.state;
+
+    return chats.filter(chat => chat.title.toLowerCase().includes(search.toLowerCase()));
+  };
+
+  render() {
+    const {
+      classes, chats, activeChat, addNewChat, isConnected,
+    } = this.props;
+    const { activeChats } = this.state;
+
+    return (
+      <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
+        <div className={classes.drawerHeader}>
+          <TextField
+            fullWidth
+            placeholder="Search chats..."
+            margin="normal"
+            value={this.state.searchs}
+            onChange={this.handleSearchChange}
+          />
+        </div>
+        <Divider />
+        <ChatList
+          disabled={!isConnected}
+          chats={this.filterChats(activeChats === 0 ? chats.my : chats.all)}
+          activeChat={activeChat}
+        />
+        <NewChatButton disabled={!isConnected} addNewChatClick={addNewChat} />
+        <BottomNavigation showLabels value={activeChats} onChange={this.handleChatsChange}>
+          <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
+          <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
+        </BottomNavigation>
+      </Drawer>
+    );
+  }
+}
 
 export default withStyles(styles)(Sidebar);

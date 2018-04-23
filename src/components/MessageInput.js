@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -9,7 +10,7 @@ const styles = theme => ({
     left: 'auto',
     right: 0,
     bottom: 0,
-    width: `calc(100% - 320px)`,
+    width: 'calc(100% - 320px)',
     padding: theme.spacing.unit * 3,
     backgroundColor: 'rgba(63, 81, 181, 0.2)',
     boxSizing: 'border-box',
@@ -19,14 +20,50 @@ const styles = theme => ({
   },
 });
 
-const MessageInput = ({ classes }) => {
-  return (
-    <div className={classes.MessageInputDiv}>
-      <Paper className={classes.MessageInput} elevation={6}>
-        <Input fullWidth placeholder="Type your message…"/>
-      </Paper>
-    </div>
-  );
+class MessageInput extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    disabled: PropTypes.bool.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+  };
+
+  state = {
+    value: '',
+  };
+
+  handleMessageChange = (event) => {
+    this.setState({
+      value: event.target.value,
+    });
+  };
+
+  handleKeyPress = (event) => {
+    const { value } = this.state;
+
+    if (event.key === 'Enter' && value) {
+      this.props.sendMessage(value);
+      this.setState({ value: '' });
+    }
+  };
+
+  render() {
+    const { classes, disabled } = this.props;
+
+    return (
+      <div className={classes.MessageInputDiv}>
+        <Paper className={classes.MessageInput} elevation={6}>
+          <Input
+            disabled={disabled}
+            fullWidth
+            placeholder="Type your message…"
+            value={this.state.value}
+            onChange={this.handleMessageChange}
+            onKeyPress={this.handleKeyPress}
+          />
+        </Paper>
+      </div>
+    );
+  }
 }
 
 export default withStyles(styles)(MessageInput);
