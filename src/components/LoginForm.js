@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
@@ -9,10 +10,15 @@ const styles = theme => ({
   },
   button: {
     marginTop: theme.spacing.unit * 2,
-  }
+  },
 });
 
 class LoginForm extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
     username: {
       value: '',
@@ -24,15 +30,15 @@ class LoginForm extends React.Component {
     },
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     event.persist();
     const { name, value } = event.target;
 
-    this.setState((prevState) =>({
+    this.setState(prevState => ({
       [name]: {
         ...prevState[name],
         value,
-      }
+      },
     }));
   };
 
@@ -40,12 +46,10 @@ class LoginForm extends React.Component {
     event.preventDefault();
     const { username, password } = this.state;
 
-    console.log('Login: ', username.value, password.value);
-
     this.props.onSubmit(username.value, password.value);
-  }
+  };
 
-  render () {
+  render() {
     const { classes } = this.props;
     const { username, password } = this.state;
 
@@ -73,24 +77,18 @@ class LoginForm extends React.Component {
           value={password.value}
           name="password"
           onChange={this.handleInputChange}
-          autoComplete = "password"
+          autoComplete="password"
           margin="normal"
           error={!password.isValid}
           fullWidth
           required
         />
-        <Button 
-          fullWidth 
-          variant="raised" 
-          type="submit" 
-          color="primary" 
-          className={classes.button}
-        >
+        <Button fullWidth variant="raised" type="submit" color="primary" className={classes.button}>
           Login
         </Button>
       </form>
     );
-  };
+  }
 }
 
 export default withStyles(styles)(LoginForm);

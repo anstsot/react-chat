@@ -1,5 +1,5 @@
-import * as types from '../constants';
 import { combineReducers } from 'redux';
+import * as types from '../constants';
 
 const initialState = {
   isFetching: {
@@ -88,7 +88,7 @@ export const isFetching = (state = initialState.isFetching, action) => {
     default:
       return state;
   }
-}
+};
 
 export const errors = (state = initialState.errors, action) => {
   switch (action.type) {
@@ -121,7 +121,7 @@ export const errors = (state = initialState.errors, action) => {
     default:
       return state;
   }
-}
+};
 
 export const isConnected = (state = initialState.isConnected, action) => {
   switch (action.type) {
@@ -133,10 +133,10 @@ export const isConnected = (state = initialState.isConnected, action) => {
     default:
       return state;
   }
-}
+};
 
 export default combineReducers({
   isFetching,
   errors,
   isConnected,
-})
+});

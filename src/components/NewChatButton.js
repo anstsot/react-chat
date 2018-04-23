@@ -1,13 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import TextField from 'material-ui/TextField';
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from 'material-ui/Dialog';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
 
 const styles = theme => ({
   NewChatButton: {
@@ -18,10 +15,16 @@ const styles = theme => ({
   },
   modalNewChat: {
     width: '300px',
-  }
+  },
 });
 
-class NewChatButton extends React.Component{
+class NewChatButton extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    addNewChatClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+  };
+
   state = {
     openModal: false,
     title: {
@@ -29,33 +32,33 @@ class NewChatButton extends React.Component{
       isValid: true,
     },
   };
-  
+
   handleClose = () => {
     this.setState({ openModal: false });
   };
 
   handleAddNewChatClick = () => {
     this.setState({ openModal: true });
-  }; 
+  };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     event.persist();
     this.setState({
       title: {
         value: event.target.value,
         isValid: true,
-      }
+      },
     });
   };
 
-  handleAddNewChatSubmit = (event) => {
+  handleAddNewChatSubmit = () => {
     const { title } = this.state;
     if (!title.value) {
       this.setState({
         title: {
           value: title.value,
           isValid: false,
-        }
+        },
       });
 
       return;
@@ -67,29 +70,27 @@ class NewChatButton extends React.Component{
       title: {
         value: '',
         isValid: true,
-      }
+      },
     });
   };
 
-  render(){
+  render() {
     const { classes, disabled } = this.props;
     const { title, openModal } = this.state;
 
     return (
       <React.Fragment>
-        <Button 
+        <Button
           disabled={disabled}
-          variant="fab" 
-          color="primary" 
-          aria-label="add" 
-          className={classes.NewChatButton} 
-          onClick={this.handleAddNewChatClick}>
+          variant="fab"
+          color="primary"
+          aria-label="add"
+          className={classes.NewChatButton}
+          onClick={this.handleAddNewChatClick}
+        >
           <AddIcon />
         </Button>
-        <Dialog
-          open={openModal}
-          onClose={this.handleClose}
-        >
+        <Dialog open={openModal} onClose={this.handleClose}>
           <DialogTitle>Create new chat</DialogTitle>
           <DialogContent className={classes.modalNewChat}>
             <TextField

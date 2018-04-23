@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
@@ -9,10 +10,15 @@ const styles = theme => ({
   },
   button: {
     marginTop: theme.spacing.unit * 2,
-  }
+  },
 });
 
 class SignUpForm extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
     username: {
       value: '',
@@ -38,16 +44,16 @@ class SignUpForm extends React.Component {
     });
 
     return isValid;
-  }
+  };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     event.persist();
     const { name, value } = event.target;
-    this.setState((prevState) =>({
+    this.setState(prevState => ({
       [name]: {
         ...prevState[name],
         value,
-      }
+      },
     }));
   };
 
@@ -59,42 +65,42 @@ class SignUpForm extends React.Component {
     const { username, password } = this.state;
 
     this.props.onSubmit(username.value, password.value);
-  }
+  };
 
-  render () {
-    const { classes } = this.props
+  render() {
+    const { classes } = this.props;
     const { username, password, repeatedPassword } = this.state;
 
     return (
       <form className={classes.container} onSubmit={this.handleSubmit}>
-      <TextField
-        fullWidth
-        required
-        label="Username"
-        placeholder="Type your username..."
-        type="text"
-        name="username"
-        className={classes.textField}
-        value={username.value}
-        onChange={this.handleInputChange}
-        autoComplete = "username"
-        margin="normal"
-        error={!username.isValid}
-      />
-      <TextField
-        fullWidth
-        required
-        label="Password"
-        placeholder="Type your password..."
-        type="password"
-        name="password"
-        className={classes.textField}
-        value={password.value}
-        onChange={this.handleInputChange}
-        margin="normal"
-        error={!password.isValid}
-        autoComplete="new-password"
-      />
+        <TextField
+          fullWidth
+          required
+          label="Username"
+          placeholder="Type your username..."
+          type="text"
+          name="username"
+          className={classes.textField}
+          value={username.value}
+          onChange={this.handleInputChange}
+          autoComplete="username"
+          margin="normal"
+          error={!username.isValid}
+        />
+        <TextField
+          fullWidth
+          required
+          label="Password"
+          placeholder="Type your password..."
+          type="password"
+          name="password"
+          className={classes.textField}
+          value={password.value}
+          onChange={this.handleInputChange}
+          margin="normal"
+          error={!password.isValid}
+          autoComplete="new-password"
+        />
         <TextField
           fullWidth
           required
@@ -109,10 +115,12 @@ class SignUpForm extends React.Component {
           error={!repeatedPassword.isValid}
           autoComplete="new-password"
         />
-        <Button fullWidth variant="raised" type="submit" color="primary" className={classes.button}>Sign Up</Button>
+        <Button fullWidth variant="raised" type="submit" color="primary" className={classes.button}>
+          Sign Up
+        </Button>
       </form>
     );
-  };
+  }
 }
 
 export default withStyles(styles)(SignUpForm);
